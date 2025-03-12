@@ -1,1 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="himedia.slivermate.mappers.SliverPurchaseMapper">
+	<select id="selectAllPurchases" 
+		resultType="sliverPurchase">
+	SELECT * FROM sliver_purchase ORDER BY id DESC
+	</select>
+	
+	<select id="selectPurchaseById"
+		parameterType="Long"
+		resultType="sliverPurchase">
+	SELECT * FROM sliver_purchase WHERE id=#{id}
+	</select>
+	
+	<select id="selectPurchaseByUid"
+		parameterType="Long"
+		resultType="sliverPurchase">
+	SELECT * FROM sliver_purchase WHERE uid=#{uid}
+	</select>
+	
+	<insert id="insertPurchase" parameterType="sliverPurchase">
+	INSERT INTO sliver_purchase (sku, uid, club_id, receipt_id, price, is_monthly_paid)
+	VALUES (#{sku}, #{uid}, #{club_id}, #{receipt_id}, #{price}, #{is_monthly_paid})
+	</insert>
+	
+	<update id="updatePurchase" parameterType="sliverPurchase">
+	UPDATE sliver_purchase SET
+	sku=#{sku}, uid=#{uid}, club_id=#{club_id}, receipt_id=#{receipt_id}, price=#{price}, is_monthly_paid=#{is_monthly_paid}
+	WHERE id=#{id}
+	</update>
+
+	<delete id="deletePurchase" parameterType="Long">
+	DELETE FROM sliver_purchase WHERE id=#{id}
+	</delete>
+</mapper>

@@ -32,7 +32,7 @@ public class SliverLessonService {
 	}
 	
 	public List<SliverLesson> selectLessonsByUserId(Long user_id) {
-		List<SliverLesson> lessons = sliverLessonMapper.selectLessonByUserId(user_id);
+		List<SliverLesson> lessons = sliverLessonMapper.selectLessonsByUserId(user_id);
 		
 		return lessons;
 	}

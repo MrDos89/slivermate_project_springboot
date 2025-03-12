@@ -15,7 +15,7 @@ public interface SliverLessonMapper {
 // 	<select id="selectLessonsBySubCategoryId" resultType="SliverLesson">
 	List<SliverLesson> selectLessonsBySubCategoryId(Integer sub_category_id);
 //	<select id="selectLessonByUserId" resultType="SliverLesson">	
-	List<SliverLesson> selectLessonByUserId(Long user_id);
+	List<SliverLesson> selectLessonsByUserId(Long user_id);
 //	<select id="selectRelatedLessons" resultType="SliverLesson">
 	List<SliverLesson> selectRelatedLessons(SliverLesson lesson);
 //	<select id="selectLessonById" resultType="SliverLesson">

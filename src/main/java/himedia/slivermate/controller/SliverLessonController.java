@@ -30,7 +30,7 @@ public class SliverLessonController {
 		return ResponseEntity.ok(lessons);
 	}
 
-	// GET : /api/lesson/my/{uid}
+	// GET : /api/lesson/c/{category_id}
 	@GetMapping("/c/{category_id}")
 	public ResponseEntity<List<SliverLesson>> selectLessonsByCategoryId(@PathVariable Integer category_id) {
 		List<SliverLesson> lessons = sliverLessonService.selectLessonsByCategoryId(category_id);
@@ -46,7 +46,7 @@ public class SliverLessonController {
 		return ResponseEntity.ok(lessons);
 	}
 	
-	// GET : /api/lesson/my/{uid}
+	// GET : /api/lesson/u/{uid}
 	@GetMapping("/u/{uid}")
 	public ResponseEntity<List<SliverLesson>> selectLessonsByUserId(@PathVariable Long uid) {
 		List<SliverLesson> lessons = sliverLessonService.selectLessonsByUserId(uid);

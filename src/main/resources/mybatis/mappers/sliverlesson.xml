@@ -8,18 +8,16 @@
 	</select>
 	
 	<select id="selectLessonsByCategoryId"
-		parameterType="Int"
 		resultType="sliverLesson">
 	SELECT lesson.*, user.nickname, user.thumbnail FROM sliver_lesson AS lesson JOIN sliver_user AS user WHERE lesson_category=#{category_id} AND lesson.user_id=user.uid
 	</select>
 
 	<select id="selectLessonsBySubCategoryId"
-		parameterType="Int"
 		resultType="sliverLesson">
 	SELECT lesson.*, user.nickname, user.thumbnail FROM sliver_lesson AS lesson JOIN sliver_user AS user WHERE lesson_sub_category=#{category_id} AND lesson.user_id=user.uid
 	</select>
 	
-	<select id="selectLessonsByUserId"
+	<select id="selectLessonByUserId"
 		parameterType="Long"
 		resultType="sliverLesson">
 	SELECT lesson.*, user.nickname, user.thumbnail FROM sliver_lesson AS lesson JOIN sliver_user AS user WHERE user_id=#{user_id} AND lesson.user_id=user.uid

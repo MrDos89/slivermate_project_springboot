@@ -8,9 +8,9 @@ set -e
 echo "Running Maven build..."
 mvn clean package || { echo "Maven build failed"; exit 1; }
 
-docker build --platform linux/amd64 -t hbgogumaserver .
+docker build --platform linux/amd64 -t slivermateserver .
 
-docker tag hbgogumaserver mrdos89/hbgogumaserver
+docker tag slivermateserver mrdos89/slivermateserver
 
 # docker에서 push 올림
-docker push mrdos89/hbgogumaserver
+docker push mrdos89/slivermateserver
