@@ -31,31 +31,39 @@ public class SliverLessonController {
 	}
 
 	// GET : /api/lesson/my/{uid}
-	@GetMapping("/my/{uid}")
+	@GetMapping("/c/{category_id}")
 	public ResponseEntity<List<SliverLesson>> selectLessonsByCategoryId(@PathVariable Integer category_id) {
 		List<SliverLesson> lessons = sliverLessonService.selectLessonsByCategoryId(category_id);
 		
 		return ResponseEntity.ok(lessons);
 	}
+
+	// GET : /api/lesson/sc/{sub_category_id}
+	@GetMapping("/sc/{sub_category_id}")
+	public ResponseEntity<List<SliverLesson>> selectLessonsBySubCategoryId(@PathVariable Integer sub_category_id) {
+		List<SliverLesson> lessons = sliverLessonService.selectLessonsBySubCategoryId(sub_category_id);
+		
+		return ResponseEntity.ok(lessons);
+	}
 	
 	// GET : /api/lesson/my/{uid}
-	@GetMapping("/my/{uid}")
+	@GetMapping("/u/{uid}")
 	public ResponseEntity<List<SliverLesson>> selectLessonsByUserId(@PathVariable Long uid) {
 		List<SliverLesson> lessons = sliverLessonService.selectLessonsByUserId(uid);
 		
 		return ResponseEntity.ok(lessons);
 	}
 	
-//	GET : /api/lesson/{pid}
-	@GetMapping("/{pid}")
-	public ResponseEntity<SliverLesson> selectLessonById(@PathVariable Long pid) {
-		SliverLesson post = sliverLessonService.selectLessonById(pid);
+//	GET : /api/lesson/{id}
+	@GetMapping("/{id}")
+	public ResponseEntity<SliverLesson> selectLessonById(@PathVariable Long id) {
+		SliverLesson post = sliverLessonService.selectLessonById(id);
 		
 		return ResponseEntity.ok(post);
 	}
 	
-	//GET : /api/lesson/{pid}/related
-	@GetMapping("/{pid}/related")
+	//GET : /api/lesson/{id}/related
+	@GetMapping("/{id}/related")
 	public ResponseEntity<List<SliverLesson>> selectRelatedLessons(@PathVariable Long pid) {
 		SliverLesson lesson = sliverLessonService.selectLessonById(pid);
 			
@@ -72,27 +80,27 @@ public class SliverLessonController {
 		//	ResponseEntity.created로 하는 것이 의미상 더 나을 수도 있다.
 	}
 
-//	PATCH : /api/lesson/{pid} -> 기존 쇼핑 항목 수정
-	@PatchMapping("/{pid}")
+//	PATCH : /api/lesson/{id} -> 기존 쇼핑 항목 수정
+	@PatchMapping("/{id}")
 	public ResponseEntity<SliverLesson> updateLesson(@RequestBody SliverLesson lesson, @PathVariable Long id) {
 		lesson.setLesson_id(id);
 		SliverLesson updatedPost = sliverLessonService.updateLesson(lesson);
 		return ResponseEntity.ok(updatedPost);
 	}
 	
-	@PatchMapping("/{pid}/reportCnt")
-	public ResponseEntity<Void> updateLessonReportCnt(@RequestBody SliverLesson lesson, @PathVariable Long id) {
-		lesson.setLesson_id(id);
-		
-		sliverLessonService.updateLessonReportCnt(lesson);
-		
-		return ResponseEntity.ok().<Void>build();
-	}
+//	@PatchMapping("/{id}/reportCnt")
+//	public ResponseEntity<Void> updateLessonReportCnt(@RequestBody SliverLesson lesson, @PathVariable Long id) {
+//		lesson.setLesson_id(id);
+//		
+//		sliverLessonService.updateLessonReportCnt(lesson);
+//		
+//		return ResponseEntity.ok().<Void>build();
+//	}
 	
-	@PatchMapping("/{pid}/hide")
+	@PatchMapping("/{id}/hide")
 	//	Body에 실어 보낼 내용이 없음 -> Void
-	public ResponseEntity<Void> hideLesson(@PathVariable Long pid) {
-		sliverLessonService.hideLesson(pid);
+	public ResponseEntity<Void> hideLesson(@PathVariable Long id) {
+		sliverLessonService.hideLesson(id);
 		return ResponseEntity.ok().<Void>build();
 	}
 	
@@ -105,10 +113,10 @@ public class SliverLessonController {
 //	}
 	
 //	DELETE : /api/lesson/{pid} -> 기존 쇼핑 항목 삭제
-	@DeleteMapping("/{pid}")
+	@DeleteMapping("/{id}")
 	//	Body에 실어 보낼 내용이 없음 -> Void
-	public ResponseEntity<Void> deleteLesson(@PathVariable Long pid) {
-		sliverLessonService.deleteLesson(pid);
+	public ResponseEntity<Void> deleteLesson(@PathVariable Long id) {
+		sliverLessonService.deleteLesson(id);
 		return ResponseEntity.ok().<Void>build();
 	}
 }

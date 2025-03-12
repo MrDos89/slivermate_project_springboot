@@ -10,8 +10,10 @@ import himedia.slivermate.repository.vo.SliverLesson;
 public interface SliverLessonMapper {
 //	<select id="selectAllLessons" resultType="SliverLesson">
 	List<SliverLesson> selectAllLessons();
-//	<select id="selectLessonsByCategory" resultType="SliverLesson">
+//	<select id="selectLessonsByCategoryId" resultType="SliverLesson">
 	List<SliverLesson> selectLessonsByCategoryId(Integer category_id);
+// 	<select id="selectLessonsBySubCategoryId" resultType="SliverLesson">
+	List<SliverLesson> selectLessonsBySubCategoryId(Integer sub_category_id);
 //	<select id="selectLessonByUserId" resultType="SliverLesson">	
 	List<SliverLesson> selectLessonByUserId(Long user_id);
 //	<select id="selectRelatedLessons" resultType="SliverLesson">
@@ -22,8 +24,8 @@ public interface SliverLessonMapper {
 	int insertLesson(SliverLesson lesson);
 //	<update id="updateLesson" parameterType="SliverLesson">
 	int updateLesson(SliverLesson lesson);
-//	<update id="updateLessonReportCnt" parameterType="SliverLesson">	
-	void updateLessonReportCnt(SliverLesson lesson);
+////	<update id="updateLessonReportCnt" parameterType="SliverLesson">	
+//	void updateLessonReportCnt(SliverLesson lesson);
 //	<update id="hideLesson" parameterType="Long">
 	void hideLesson(Long id);
 //	<delete id="deleteLesson" parameterType="Long">

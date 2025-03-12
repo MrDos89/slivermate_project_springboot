@@ -24,6 +24,12 @@ public class SliverLessonService {
 		
 		return lessons;
 	}
+
+	public List<SliverLesson> selectLessonsBySubCategoryId(Integer sub_category_id) {
+		List<SliverLesson> lessons = sliverLessonMapper.selectLessonsBySubCategoryId(sub_category_id);
+		
+		return lessons;
+	}
 	
 	public List<SliverLesson> selectLessonsByUserId(Long user_id) {
 		List<SliverLesson> lessons = sliverLessonMapper.selectLessonByUserId(user_id);
@@ -57,9 +63,9 @@ public class SliverLessonService {
 		return lesson;
 	}
 	
-	public void updateLessonReportCnt(SliverLesson lesson) {
-		sliverLessonMapper.updateLessonReportCnt(lesson);
-	}
+//	public void updateLessonReportCnt(SliverLesson lesson) {
+//		sliverLessonMapper.updateLessonReportCnt(lesson);
+//	}
 	
 	public void hideLesson(Long id) {
 		sliverLessonMapper.hideLesson(id);

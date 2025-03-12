@@ -10,7 +10,13 @@
 	<select id="selectLessonsByCategoryId"
 		parameterType="Int"
 		resultType="sliverLesson">
-	SELECT lesson.*, user.nickname, user.thumbnail FROM sliver_lesson AS lesson JOIN sliver_user AS user WHERE category_id=#{category_id} AND lesson.user_id=user.uid
+	SELECT lesson.*, user.nickname, user.thumbnail FROM sliver_lesson AS lesson JOIN sliver_user AS user WHERE lesson_category=#{category_id} AND lesson.user_id=user.uid
+	</select>
+
+	<select id="selectLessonsBySubCategoryId"
+		parameterType="Int"
+		resultType="sliverLesson">
+	SELECT lesson.*, user.nickname, user.thumbnail FROM sliver_lesson AS lesson JOIN sliver_user AS user WHERE lesson_sub_category=#{category_id} AND lesson.user_id=user.uid
 	</select>
 	
 	<select id="selectLessonsByUserId"
@@ -19,53 +25,48 @@
 	SELECT lesson.*, user.nickname, user.thumbnail FROM sliver_lesson AS lesson JOIN sliver_user AS user WHERE user_id=#{user_id} AND lesson.user_id=user.uid
 	</select>
 	
+	<select id="selectRelatedLessons"
+		resultType="sliverLesson">
+	SELECT lesson.*, user.nickname, user.thumbnail, user.user_rate
+	FROM sliver_lesson AS lesson
+	LEFT JOIN sliver_user AS user ON lesson.uid = user.uid
+	WHERE lesson.lesson_category = #{lesson_category}
+  	AND lesson.lesson_sub_category = #{lesson_sub_category}
+  	ORDER BY lesson.lesson_register_date DESC LIMIT 5
+	</select>
+	
 	<select id="selecLessonById"
 		parameterType="Long"
 		resultType="sliverLesson">
-	SELECT post.*, user.nickname, user.thumbnail, user.user_rate FROM goguma_post AS post JOIN goguma_user AS user WHERE pid=#{pid} AND post.uid=user.uid
+	SELECT lesson.*, user.nickname, user.thumbnail FROM sliver_lesson AS lesson JOIN sliver_user AS user WHERE lesson_id=#{id} AND lesson.uid=user.uid
 	</select>
 	
-	<select id="selectMyPosts"
-		parameterType="Long"
-		resultType="sliverLesson">
-	SELECT pid, post_title, post_photo, report_cnt, upd_date FROM goguma_post WHERE uid=#{uid}
-	</select>
-	
-	<select id="selectRelatedPosts"
-		resultType="sliverLesson">
-	SELECT post.*, user.nickname, user.thumbnail, user.user_rate
-	FROM goguma_post AS post
-	LEFT JOIN goguma_user AS user ON post.uid = user.uid
-	WHERE post.post_category = #{post_category}
-  	AND post.loca_gu = #{loca_gu}
-  	AND post.loca_dong = #{loca_dong} ORDER BY user_rate DESC LIMIT 5
-	</select>
-	
-	<insert id="insertPost" parameterType="sliverLesson">
-	INSERT INTO goguma_post (uid, selected_uid, loca_gu, loca_dong, post_title, post_photo, post_content, post_category, post_price, user_list, report_cnt)
-	VALUES (#{uid}, #{selected_uid}, #{loca_gu}, #{loca_dong}, #{post_title}, #{post_photo}, #{post_content}, #{post_category}, #{post_price}, #{user_list}, #{report_cnt})
+	<insert id="insertLesson" parameterType="sliverLesson">
+	INSERT INTO sliver_lesson (user_id, lesson_name, lesson_desc, lesson_category, lesson_sub_category, lesson_free_lecture, lesson_cost_lecture, lesson_thumbnail, lesson_price, lesson_register_date, is_hidden)
+	VALUES (#{user_id}, #{lesson_name}, #{lesson_desc}, #{lesson_category}, #{lesson_sub_category}, #{lesson_free_lecture}, #{lesson_cost_lecture}, #{lesson_thumbnail}, #{lesson_price}, #{lesson_register_date}, #{is_hidden})
 	</insert>
 	
-	<update id="updatePost" parameterType="sliverLesson">
-	UPDATE goguma_post SET
-	uid=#{uid}, selected_uid=#{selected_uid}, loca_gu=#{loca_gu}, loca_dong=#{loca_dong}, post_title=#{post_title}, 
-	post_photo=#{post_photo}, post_content=#{post_content}, post_category=#{post_category}, post_price=#{post_price}, user_list=#{user_list}, report_cnt=#{report_cnt}
-	WHERE pid=#{pid}
+	<update id="updateLesson" parameterType="sliverLesson">
+	UPDATE sliver_lesson SET
+	user_id=#{user_id}, lesson_name=#{lesson_name}, lesson_desc=#{lesson_desc}, lesson_category=#{lesson_category}, lesson_sub_category=#{lesson_sub_category}, 
+	lesson_free_lecture=#{lesson_free_lecture}, lesson_cost_lecture=#{lesson_cost_lecture}, lesson_thumbnail=#{lesson_thumbnail}, lesson_price=#{lesson_price}, lesson_register_date=#{lesson_register_date}, is_hidden=#{is_hidden}
+	WHERE lesson_id=#{lesson_id}
 	</update>
 
-	<update id="updatePostUserList" parameterType="sliverLesson">
-	UPDATE goguma_post SET
-	user_list=#{user_list}
-	WHERE pid=#{pid}
+	<update id="hideLesson" parameterType="sliverLesson">
+	UPDATE sliver_lesson SET
+	is_hidden=!is_hidden
+	WHERE lesson_id=#{id}
 	</update>
 	
+	<!-- 
 	<update id="updatePostReportCnt" parameterType="sliverLesson">
 	UPDATE goguma_post SET
 	report_cnt=report_cnt+#{report_cnt}
 	WHERE pid=#{pid}
-	</update>
+	</update> -->
 
 	<delete id="deletePost" parameterType="Long">
-	DELETE FROM goguma_post WHERE pid=#{pid}
+	DELETE FROM sliver_lesson WHERE lesson_id=#{id}
 	</delete>
 </mapper>
