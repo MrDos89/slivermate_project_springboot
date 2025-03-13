@@ -27,7 +27,7 @@
 		resultType="sliverLesson">
 	SELECT lesson.*, user.nickname, user.thumbnail, user.user_rate
 	FROM sliver_lesson AS lesson
-	LEFT JOIN sliver_user AS user ON lesson.uid = user.uid
+	LEFT JOIN sliver_user AS user ON lesson.user_id = user.uid
 	WHERE lesson.lesson_category = #{lesson_category}
   	AND lesson.lesson_sub_category = #{lesson_sub_category}
   	ORDER BY lesson.lesson_register_date DESC LIMIT 5
