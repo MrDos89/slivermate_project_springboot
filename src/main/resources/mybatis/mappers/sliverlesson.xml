@@ -14,7 +14,7 @@
 
 	<select id="selectLessonsBySubCategoryId"
 		resultType="sliverLesson">
-	SELECT lesson.*, user.nickname, user.thumbnail FROM sliver_lesson AS lesson JOIN sliver_user AS user WHERE lesson_sub_category=#{category_id} AND lesson.user_id=user.uid
+	SELECT lesson.*, user.nickname, user.thumbnail FROM sliver_lesson AS lesson JOIN sliver_user AS user WHERE lesson_category=#{category_id} AND lesson_sub_category=#{sub_category_id} AND lesson.user_id=user.uid
 	</select>
 	
 	<select id="selectLessonByUserId"

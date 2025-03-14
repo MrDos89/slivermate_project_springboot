@@ -25,8 +25,8 @@ public class SliverLessonService {
 		return lessons;
 	}
 
-	public List<SliverLesson> selectLessonsBySubCategoryId(Integer sub_category_id) {
-		List<SliverLesson> lessons = sliverLessonMapper.selectLessonsBySubCategoryId(sub_category_id);
+	public List<SliverLesson> selectLessonsBySubCategoryId(Integer category_id, Integer sub_category_id) {
+		List<SliverLesson> lessons = sliverLessonMapper.selectLessonsBySubCategoryId(category_id, sub_category_id);
 		
 		return lessons;
 	}

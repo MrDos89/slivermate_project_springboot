@@ -13,7 +13,7 @@ public interface SliverLessonMapper {
 //	<select id="selectLessonsByCategoryId" resultType="SliverLesson">
 	List<SliverLesson> selectLessonsByCategoryId(Integer category_id);
 // 	<select id="selectLessonsBySubCategoryId" resultType="SliverLesson">
-	List<SliverLesson> selectLessonsBySubCategoryId(Integer sub_category_id);
+	List<SliverLesson> selectLessonsBySubCategoryId(Integer category_id, Integer sub_category_id);
 //	<select id="selectLessonByUserId" resultType="SliverLesson">	
 	List<SliverLesson> selectLessonsByUserId(Long user_id);
 //	<select id="selectRelatedLessons" resultType="SliverLesson">
