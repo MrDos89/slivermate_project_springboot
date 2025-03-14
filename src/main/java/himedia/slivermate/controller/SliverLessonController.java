@@ -38,10 +38,10 @@ public class SliverLessonController {
 		return ResponseEntity.ok(lessons);
 	}
 
-	// GET : /api/lesson/sc/{sub_category_id}
-	@GetMapping("/sc/{sub_category_id}")
-	public ResponseEntity<List<SliverLesson>> selectLessonsBySubCategoryId(@PathVariable Integer sub_category_id) {
-		List<SliverLesson> lessons = sliverLessonService.selectLessonsBySubCategoryId(sub_category_id);
+	// GET : /api/lesson/sc/{category_id}/{sub_category_id}
+	@GetMapping("/sc/{category_id}/{sub_category_id}")
+	public ResponseEntity<List<SliverLesson>> selectLessonsBySubCategoryId(@PathVariable Integer category_id, @PathVariable Integer sub_category_id) {
+		List<SliverLesson> lessons = sliverLessonService.selectLessonsBySubCategoryId(category_id, sub_category_id);
 		
 		return ResponseEntity.ok(lessons);
 	}
