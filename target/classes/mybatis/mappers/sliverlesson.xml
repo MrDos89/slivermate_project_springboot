@@ -4,23 +4,36 @@
 <mapper namespace="himedia.slivermate.mappers.SliverLessonMapper">
 	<select id="selectAllLessons" 
 		resultType="sliverLesson">
-	SELECT lesson.*, user.nickname, user.thumbnail FROM sliver_lesson AS lesson JOIN sliver_user AS user WHERE lesson.user_id=user.uid ORDER BY lesson_id DESC
+	SELECT lesson.*, user.nickname AS user_name, user.thumbnail AS user_thumbnail 
+	FROM sliver_lesson AS lesson 
+	JOIN sliver_user AS user 
+	WHERE lesson.user_id=user.uid ORDER BY lesson_id DESC
 	</select>
 	
 	<select id="selectLessonsByCategoryId"
 		resultType="sliverLesson">
-	SELECT lesson.*, user.nickname, user.thumbnail FROM sliver_lesson AS lesson JOIN sliver_user AS user WHERE lesson_category=#{category_id} AND lesson.user_id=user.uid
+	SELECT lesson.*, user.nickname, user.thumbnail 
+	FROM sliver_lesson AS lesson 
+	JOIN sliver_user AS user 
+	WHERE lesson_category=#{category_id} AND lesson.user_id=user.uid
 	</select>
 
 	<select id="selectLessonsBySubCategoryId"
 		resultType="sliverLesson">
-	SELECT lesson.*, user.nickname, user.thumbnail FROM sliver_lesson AS lesson JOIN sliver_user AS user WHERE lesson_category=#{category_id} AND lesson_sub_category=#{sub_category_id} AND lesson.user_id=user.uid
+	SELECT lesson.*, user.nickname, user.thumbnail 
+	FROM sliver_lesson AS lesson 
+	JOIN sliver_user AS user 
+	WHERE lesson_category=#{category_id} 
+	AND lesson_sub_category=#{sub_category_id} AND lesson.user_id=user.uid
 	</select>
 	
 	<select id="selectLessonByUserId"
 		parameterType="Long"
 		resultType="sliverLesson">
-	SELECT lesson.*, user.nickname, user.thumbnail FROM sliver_lesson AS lesson JOIN sliver_user AS user WHERE user_id=#{user_id} AND lesson.user_id=user.uid
+	SELECT lesson.*, user.nickname, user.thumbnail 
+	FROM sliver_lesson AS lesson 
+	JOIN sliver_user AS user 
+	WHERE user_id=#{user_id} AND lesson.user_id=user.uid
 	</select>
 	
 	<select id="selectRelatedLessons"
@@ -36,18 +49,36 @@
 	<select id="selecLessonById"
 		parameterType="Long"
 		resultType="sliverLesson">
-	SELECT lesson.*, user.nickname, user.thumbnail FROM sliver_lesson AS lesson JOIN sliver_user AS user WHERE lesson_id=#{id} AND lesson.user_id=user.uid
+	SELECT lesson.*, user.nickname, user.thumbnail 
+	FROM sliver_lesson AS lesson 
+	JOIN sliver_user AS user 
+	WHERE lesson_id=#{id} AND lesson.user_id=user.uid
 	</select>
 	
 	<insert id="insertLesson" parameterType="sliverLesson">
-	INSERT INTO sliver_lesson (user_id, lesson_name, lesson_desc, lesson_category, lesson_sub_category, lesson_free_lecture, lesson_cost_lecture, lesson_thumbnail, lesson_price, lesson_register_date, is_hidden)
-	VALUES (#{user_id}, #{lesson_name}, #{lesson_desc}, #{lesson_category}, #{lesson_sub_category}, #{lesson_free_lecture}, #{lesson_cost_lecture}, #{lesson_thumbnail}, #{lesson_price}, #{lesson_register_date}, #{is_hidden})
+	INSERT INTO sliver_lesson (user_id, 
+								lesson_name, lesson_desc, 
+								lesson_category, lesson_sub_category, 
+								lesson_free_lecture, lesson_cost_lecture, 
+								lesson_thumbnail, lesson_price, 
+								lesson_register_date, is_hidden)
+	VALUES (#{user_id}, #{lesson_name}, #{lesson_desc}, #{lesson_category}, 
+			#{lesson_sub_category}, #{lesson_free_lecture}, 
+			#{lesson_cost_lecture}, #{lesson_thumbnail}, 
+			#{lessosn_price}, #{lesson_register_date}, #{is_hidden})
 	</insert>
 	
 	<update id="updateLesson" parameterType="sliverLesson">
 	UPDATE sliver_lesson SET
-	user_id=#{user_id}, lesson_name=#{lesson_name}, lesson_desc=#{lesson_desc}, lesson_category=#{lesson_category}, lesson_sub_category=#{lesson_sub_category}, 
-	lesson_free_lecture=#{lesson_free_lecture}, lesson_cost_lecture=#{lesson_cost_lecture}, lesson_thumbnail=#{lesson_thumbnail}, lesson_price=#{lesson_price}, lesson_register_date=#{lesson_register_date}, is_hidden=#{is_hidden}
+	user_id=#{user_id}, lesson_name=#{lesson_name}, 
+	lesson_desc=#{lesson_desc}, lesson_category=#{lesson_category}, 
+	lesson_sub_category=#{lesson_sub_category}, 
+	lesson_free_lecture=#{lesson_free_lecture}, 
+	lesson_cost_lecture=#{lesson_cost_lecture}, 
+	lesson_thumbnail=#{lesson_thumbnail}, 
+	lesson_price=#{lesson_price}, 
+	lesson_register_date=#{lesson_register_date}, 
+	is_hidden=#{is_hidden}
 	WHERE lesson_id=#{lesson_id}
 	</update>
 
