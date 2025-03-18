@@ -20,7 +20,7 @@
 
 	<select id="selectLessonsBySubCategoryId"
 		resultType="sliverLesson">
-	SELECT lesson.*, user.nickname, user.thumbnail 
+	SELECT lesson.*, user.nickname AS user_name, user.thumbnail AS user_thumbnail
 	FROM sliver_lesson AS lesson 
 	JOIN sliver_user AS user 
 	WHERE lesson_category=#{category_id} 
