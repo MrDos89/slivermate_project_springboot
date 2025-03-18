@@ -20,13 +20,13 @@ public class SliverPurchaseService {
 	}
 	
 	public SliverPurchase selectPurchaseById(Long id) {
-		SliverPurchase purchase = sliverPurchaseMapper.selectById(id);
+		SliverPurchase purchase = sliverPurchaseMapper.selectPurchaseById(id);
 		
 		return purchase;
 	}
 
 	public List<SliverPurchase> selectPurchaseByUid(Long uid) {
-		List<SliverPurchase> purchases = sliverPurchaseMapper.selectByUid(uid);
+		List<SliverPurchase> purchases = sliverPurchaseMapper.selectPurchaseByUid(uid);
 		
 		return purchases;
 	}
@@ -36,7 +36,7 @@ public class SliverPurchaseService {
 		
 		Long id = purchase.getId();
 		
-		return sliverPurchaseMapper.selectById(id);
+		return sliverPurchaseMapper.selectPurchaseById(id);
 	}
 	
 	public SliverPurchase updatePurchase(SliverPurchase purchase) {

@@ -13,9 +13,9 @@ public interface SliverPurchaseMapper {
 //	<insert id="registerUser" parameterType="SliverPurchase">
 	int insertPurchase(SliverPurchase purchase);
 //	<select id="loginUser" parameterType="Long" resultType="SliverPurchase">
-	SliverPurchase selectById(Long id);
+	SliverPurchase selectPurchaseById(Long id);
 //	<select id="selectByUid" parameterType="Long" resultType="SliverPurchase">
-	List<SliverPurchase> selectByUid(Long uid);
+	List<SliverPurchase> selectPurchaseByUid(Long uid);
 //	<update id="updateUser" parameterType="SliverPurchase">
 	int updatePurchase(SliverPurchase purchase);
 //	<delete id="deleteUser" parameterType="Long">
