@@ -2,4 +2,39 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="himedia.slivermate.mappers.SliverUserMapper">
+	<select id="selectAllUsers" 
+		resultType="sliverUser">
+	SELECT * FROM sliver_user ORDER BY uid DESC
+	</select>
+	
+	<select id="selectByUid"
+		parameterType="Long"
+		resultType="sliverUser">
+	SELECT * FROM sliver_user WHERE uid=#{uid}
+	</select>
+	
+	<select id="loginUser"
+		parameterType="String"
+		resultType="sliverUser">
+	SELECT * FROM sliver_user WHERE user_id=#{user_id} AND password=#{password}
+	</select>
+	
+	<insert id="registerUser" parameterType="sliverUser">
+	INSERT INTO sliver_user (user_name, nickname, user_id, user_password, tel_number, email, thumbnail, gu_id, recommend_uid, 
+							register_date, is_deleted, is_admin)
+	VALUES (#{user_name}, #{nickname}, #{user_id}, #{user_password}, #{tel_number}, #{email}, #{gu_id}, 
+			#{recommend_uid}, #{register_date}, #{is_deleted}, #{is_admin})
+	</insert>
+	
+	<update id="updateUser" parameterType="sliverUser">
+	UPDATE sliver_user SET
+	user_name=#{user_name}, nickname=#{nickname}, user_id=#{user_id}, user_password=#{user_password}, 
+	tel_number=#{tel_number}, email=#{email}, thumbnail=#{thumbnail}, recommend_uid=#{recommend_uid},  
+	register_date=#{register_date}, is_deleted=#{is_deleted}, is_admin=#{is_admin}
+	WHERE uid=#{uid}
+	</update>
+
+	<delete id="deleteUser" parameterType="Long">
+	DELETE FROM sliver_user WHERE uid=#{uid}
+	</delete>
 </mapper>
