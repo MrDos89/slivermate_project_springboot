@@ -46,7 +46,7 @@
   	ORDER BY lesson.lesson_register_date DESC LIMIT 5
 	</select>
 	
-	<select id="selecLessonById"
+	<select id="selectLessonById"
 		parameterType="Long"
 		resultType="sliverLesson">
 	SELECT lesson.*, user.nickname AS user_name, user.thumbnail AS user_thumbnail 
