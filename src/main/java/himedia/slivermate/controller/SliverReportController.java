@@ -37,15 +37,15 @@ public class SliverReportController {
 		//	ResponseEntity.created로 하는 것이 의미상 더 나을 수도 있다.
 	}
 	
-//	PUT : /api/report/{rid} -> 기존 신고 항목 수정
+//	PUT : /api/report/{id} -> 기존 신고 항목 수정
 	@PutMapping("/{rid}")
 	public ResponseEntity<SliverReport> updateReport(@RequestBody SliverReport report, @PathVariable Long rid) {
-		report.setRid(rid);
+		report.setId(rid);
 		SliverReport updatedReport = sliverReportService.updateReport(report);
 		return ResponseEntity.ok(updatedReport);
 	}
 	
-//	DELETE : /api/report/{rid} -> 기존 신고 항목 삭제
+//	DELETE : /api/report/{id} -> 기존 신고 항목 삭제
 	@DeleteMapping("/{rid}")
 	//	Body에 실어 보낼 내용이 없음 -> Void
 	public ResponseEntity<Void> deleteReport(@PathVariable Long rid) {
