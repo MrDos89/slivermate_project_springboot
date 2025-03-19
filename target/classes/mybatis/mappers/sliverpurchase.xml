@@ -20,13 +20,13 @@
 	</select>
 	
 	<insert id="insertPurchase" parameterType="sliverPurchase">
-	INSERT INTO sliver_purchase (sku, uid, lesson_id, club_id, receipt_id, price, is_monthly_paid)
-	VALUES (#{sku}, #{uid}, #{lesson_id}, #{club_id}, #{receipt_id}, #{price}, #{is_monthly_paid})
+	INSERT INTO sliver_purchase (sku, uid, lesson_id, model_type, club_id, receipt_id, price, is_monthly_paid)
+	VALUES (#{sku}, #{uid}, #{lesson_id}, #{model_type}, #{club_id}, #{receipt_id}, #{price}, #{is_monthly_paid})
 	</insert>
 	
 	<update id="updatePurchase" parameterType="sliverPurchase">
 	UPDATE sliver_purchase SET
-	sku=#{sku}, uid=#{uid}, lesson_id=#{lesson_id}, club_id=#{club_id}, receipt_id=#{receipt_id}, price=#{price}, is_monthly_paid=#{is_monthly_paid}
+	sku=#{sku}, uid=#{uid}, lesson_id=#{lesson_id}, model_type=#{model_type}, club_id=#{club_id}, receipt_id=#{receipt_id}, price=#{price}, is_monthly_paid=#{is_monthly_paid}
 	WHERE id=#{id}
 	</update>
 

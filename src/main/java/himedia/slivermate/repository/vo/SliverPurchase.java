@@ -18,6 +18,7 @@ public class SliverPurchase {
 	private Long sku;					// 결제 sku 아이디
 	private Long uid;					// 결제한 유저 아이디
 	private Long lesson_id;				// 결제한 레슨 아이디
+	private Integer model_type;			// 결제 수단
 	private Long club_id;				// 결제한 유저 소속 동아리
 	private String receipt_id;			// 결제 영수증
 	private Integer price;				// 결제 가격
