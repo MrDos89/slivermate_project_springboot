@@ -12,8 +12,8 @@ public interface SliverReportMapper {
 	List<SliverReport> selectAllReports();
 //	<insert id="insertReport" parameterType="SliverReport">
 	int insertReport(SliverReport item);
-//	<select id="selectByRid" parameterType="Long" resultType="SliverReport">
-	SliverReport selectByRid(Long rid);
+//	<select id="selectById" parameterType="Long" resultType="SliverReport">
+	SliverReport selectById(Long rid);
 //	<update id="updateReport" parameterType="SliverReport">
 	int updateReport(SliverReport item);
 //	<delete id="deleteReport" parameterType="Long">

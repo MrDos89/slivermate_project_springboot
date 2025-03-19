@@ -22,9 +22,9 @@ public class SliverReportService {
 	public SliverReport insertReport(SliverReport report) {
 		sliverReportMapper.insertReport(report);
 		
-		Long rid = report.getRid();
+		Long rid = report.getId();
 		
-		return sliverReportMapper.selectByRid(rid);
+		return sliverReportMapper.selectById(rid);
 	}
 	
 	public SliverReport updateReport(SliverReport report) {

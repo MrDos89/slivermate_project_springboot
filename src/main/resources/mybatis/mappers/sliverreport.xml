@@ -4,23 +4,23 @@
 <mapper namespace="himedia.slivermate.mappers.SliverReportMapper">
 	<select id="selectAllReports" 
 		resultType="sliverReport">
-	SELECT * FROM sliver_report ORDER BY rid DESC
+	SELECT * FROM sliver_report ORDER BY id DESC
 	</select>
 	
-	<select id="selectByRid"
+	<select id="selectById"
 		parameterType="Long"
 		resultType="sliverReport">
-	SELECT * FROM sliver_report WHERE rid=#{rid}
+	SELECT * FROM sliver_report WHERE id=#{id}
 	</select>
 	
 	<insert id="insertReport" parameterType="sliverReport">
-	INSERT INTO sliver_report (uid, pid, report_id, is_confirmed)
-	VALUES(#{uid}, #{pid}, #{report_id}, #{is_confirmed})
+	INSERT INTO sliver_report (user_id, lesson_id, report_id, is_confirmed)
+	VALUES(#{user_id}, #{lesson_id}, #{report_id}, #{is_confirmed})
 	</insert>
 	
 	<update id="updateReport" parameterType="sliverReport">
 	UPDATE sliver_report SET
-	uid=#{uid}, pid=#{pid}, reportId=#{report_id}, isConfirmed=#{is_confirmed} 
+	user_id=#{user_id}, lesson_id=#{lesson_id}, reportId=#{report_id}, isConfirmed=#{is_confirmed} 
 	WHERE rid=#{rid}
 	</update>
 
