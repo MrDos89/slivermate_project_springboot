@@ -71,7 +71,7 @@ public class SliverUserController {
 		session.invalidate();
 	}
 	
-//	POST : /api/gogumauser -> 새로운 유저 항목 생성
+//	POST : /api/user -> 새로운 유저 항목 생성
 	@PostMapping
 	public ResponseEntity<SliverUser> createUser(@RequestBody SliverUser user) {
 		SliverUser savedUser = sliverUserService.registerUser(user);
@@ -79,7 +79,7 @@ public class SliverUserController {
 		//	ResponseEntity.created로 하는 것이 의미상 더 나을 수도 있다.
 	}
 	
-//	PUT : /api/gogumauser/{uid} -> 기존 유저 항목 수정
+//	PUT : /api/user/{uid} -> 기존 유저 항목 수정
 	@PutMapping("/{uid}")
 	public ResponseEntity<SliverUser> updateUser(@RequestBody SliverUser user, @PathVariable Long uid) {
 		user.setUid(uid);
@@ -87,7 +87,7 @@ public class SliverUserController {
 		return ResponseEntity.ok(updatedUser);
 	}
 	
-//	DELETE : /api/gogumauser/{uid} -> 기존 유저 항목 삭제
+//	DELETE : /api/user/{uid} -> 기존 유저 항목 삭제
 	@DeleteMapping("/{uid}")
 	//	Body에 실어 보낼 내용이 없음 -> Void
 	public ResponseEntity<Void> deleteUser(@PathVariable Long uid) {

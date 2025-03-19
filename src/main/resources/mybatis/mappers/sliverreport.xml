@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="himedia.slivermate.mappers.SliverReportMapper">
+	<select id="selectAllReports" 
+		resultType="sliverReport">
+	SELECT * FROM sliver_report ORDER BY rid DESC
+	</select>
+	
+	<select id="selectByRid"
+		parameterType="Long"
+		resultType="sliverReport">
+	SELECT * FROM sliver_report WHERE rid=#{rid}
+	</select>
+	
+	<insert id="insertReport" parameterType="sliverReport">
+	INSERT INTO sliver_report (uid, pid, report_id, is_confirmed)
+	VALUES(#{uid}, #{pid}, #{report_id}, #{is_confirmed})
+	</insert>
+	
+	<update id="updateReport" parameterType="sliverReport">
+	UPDATE sliver_report SET
+	uid=#{uid}, pid=#{pid}, reportId=#{report_id}, isConfirmed=#{is_confirmed} 
+	WHERE rid=#{rid}
+	</update>
+
+	<delete id="deleteReport" parameterType="Long">
+	DELETE FROM sliver_report WHERE rid=#{rid}
+	</delete>
+</mapper>

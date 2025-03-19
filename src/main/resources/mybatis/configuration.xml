@@ -8,6 +8,7 @@
 		<typeAlias alias="sliverUser" type="himedia.slivermate.repository.vo.SliverUser" />
 		<typeAlias alias="sliverLesson" type="himedia.slivermate.repository.vo.SliverLesson" />
 		<typeAlias alias="sliverPurchase" type="himedia.slivermate.repository.vo.SliverPurchase" />
+		<typeAlias alias="sliverReport" type="himedia.slivermate.repository.vo.SliverReport" />
 	</typeAliases>
 	
 	<!-- 타입 핸들러 등록 -->
@@ -20,5 +21,6 @@
 		<mapper resource="mybatis/mappers/sliveruser.xml" />
 		<mapper resource="mybatis/mappers/sliverlesson.xml" />
 		<mapper resource="mybatis/mappers/sliverpurchase.xml" />
+		<mapper resource="mybatis/mappers/sliverreport.xml" />
 	</mappers>
 </configuration>

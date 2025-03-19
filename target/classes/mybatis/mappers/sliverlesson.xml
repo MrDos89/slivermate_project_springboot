@@ -89,8 +89,8 @@
 	</update>
 	
 	<!-- 
-	<update id="updatePostReportCnt" parameterType="sliverLesson">
-	UPDATE goguma_post SET
+	<update id="updateLessonReportCnt" parameterType="sliverLesson">
+	UPDATE sliver_lesson SET
 	report_cnt=report_cnt+#{report_cnt}
 	WHERE pid=#{pid}
 	</update> -->
