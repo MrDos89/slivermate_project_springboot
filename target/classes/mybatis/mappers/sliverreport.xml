@@ -14,17 +14,17 @@
 	</select>
 	
 	<insert id="insertReport" parameterType="sliverReport">
-	INSERT INTO sliver_report (user_id, lesson_id, report_id, is_confirmed)
-	VALUES(#{user_id}, #{lesson_id}, #{report_id}, #{is_confirmed})
+	INSERT INTO sliver_report (user_id, lesson_id, report_id, report_content, is_confirmed)
+	VALUES(#{user_id}, #{lesson_id}, #{report_id}, #{report_content}, #{is_confirmed})
 	</insert>
 	
 	<update id="updateReport" parameterType="sliverReport">
 	UPDATE sliver_report SET
-	user_id=#{user_id}, lesson_id=#{lesson_id}, reportId=#{report_id}, isConfirmed=#{is_confirmed} 
-	WHERE rid=#{rid}
+	user_id=#{user_id}, lesson_id=#{lesson_id}, reportId=#{report_id}, report_content=#{report_content}, isConfirmed=#{is_confirmed} 
+	WHERE id=#{id}
 	</update>
 
 	<delete id="deleteReport" parameterType="Long">
-	DELETE FROM sliver_report WHERE rid=#{rid}
+	DELETE FROM sliver_report WHERE id=#{id}
 	</delete>
 </mapper>

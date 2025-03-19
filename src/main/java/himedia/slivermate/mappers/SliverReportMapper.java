@@ -13,7 +13,7 @@ public interface SliverReportMapper {
 //	<insert id="insertReport" parameterType="SliverReport">
 	int insertReport(SliverReport item);
 //	<select id="selectById" parameterType="Long" resultType="SliverReport">
-	SliverReport selectById(Long rid);
+	SliverReport selectById(Long id);
 //	<update id="updateReport" parameterType="SliverReport">
 	int updateReport(SliverReport item);
 //	<delete id="deleteReport" parameterType="Long">

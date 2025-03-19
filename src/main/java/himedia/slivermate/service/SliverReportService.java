@@ -22,9 +22,9 @@ public class SliverReportService {
 	public SliverReport insertReport(SliverReport report) {
 		sliverReportMapper.insertReport(report);
 		
-		Long rid = report.getId();
+		Long id = report.getId();
 		
-		return sliverReportMapper.selectById(rid);
+		return sliverReportMapper.selectById(id);
 	}
 	
 	public SliverReport updateReport(SliverReport report) {
@@ -33,7 +33,7 @@ public class SliverReportService {
 		return report;
 	}
 	
-	public int deleteReport(Long rid) {
-		return sliverReportMapper.deleteReport(rid);
+	public int deleteReport(Long id) {
+		return sliverReportMapper.deleteReport(id);
 	}
 }

@@ -18,6 +18,7 @@ public class SliverReport {
 	private Long user_id;			// 신고한 유저번호
 	private Long lesson_id;			// 신고당한 게시글 번호
 	private Integer report_id;		// 신고 사유
+	private String report_content;  // 신고 내용
 	private Boolean is_confirmed;	// 신고처리 완료 여부
 	private Date upd_date;			// 신고 일시
 }
