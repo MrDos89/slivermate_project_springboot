@@ -4,6 +4,6 @@
 <mapper namespace="himedia.slivermate.mappers.SliverCategoryMapper">
 	<select id="selectAllCategories" 
 		resultType="sliverCategory">
-	SELECT * FROM sliver_category ORDER BY id DESC
+	SELECT * FROM sliver_category ORDER BY id ASC
 	</select>
 </mapper>
