@@ -54,8 +54,8 @@ public class SliverPurchaseController {
 	}
 	
 	@PatchMapping("/{lesson_id}/{uid}")
-	public ResponseEntity<Void> setIsUsed(@PathVariable Long lesson_id, @PathVariable Long user_id) {
-		sliverPurchaseService.setIsUsedLesson(lesson_id, user_id);
+	public ResponseEntity<Void> setIsUsed(@PathVariable Long lesson_id, @PathVariable Long uid) {
+		sliverPurchaseService.setIsUsedLesson(lesson_id, uid);
 		return ResponseEntity.ok().<Void>build();
 	}
 }

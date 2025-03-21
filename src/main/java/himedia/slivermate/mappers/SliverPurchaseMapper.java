@@ -21,5 +21,5 @@ public interface SliverPurchaseMapper {
 //	<delete id="deleteUser" parameterType="Long">
 	int deletePurchase(Long uid);
 //	<update id="setIsUsedLesson" parameterType="Long">
-	void setIsUsedLesson(Long lesson_id, Long user_id);
+	void setIsUsedLesson(Long lesson_id, Long uid);
 }

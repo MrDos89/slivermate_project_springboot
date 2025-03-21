@@ -37,6 +37,6 @@
 	<update id="setIsUsedLesson" parameterType="Long">
 	UPDATE sliver_purchase 
 	SET is_used=true
-	WHERE lesson_id=#{lesson_id} AND uid=#{user_id}
+	WHERE lesson_id=#{lesson_id} AND uid=#{uid}
 	</update>
 </mapper>
