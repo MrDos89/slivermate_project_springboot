@@ -16,7 +16,7 @@
 	<select id="selectPurchaseByUid"
 		parameterType="Long"
 		resultType="sliverPurchase">
-	SELECT * FROM sliver_purchase WHERE uid=#{uid}
+	SELECT * FROM sliver_purchase WHERE uid=#{uid} AND is_used=false
 	</select>
 	
 	<insert id="insertPurchase" parameterType="sliverPurchase">
