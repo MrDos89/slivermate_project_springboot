@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -50,5 +51,11 @@ public class SliverPurchaseController {
 		SliverPurchase savedPurchase = sliverPurchaseService.insertPurchase(purchase);
 		
 		return ResponseEntity.ok(savedPurchase);
+	}
+	
+	@PatchMapping("/{lesson_id}/{uid}")
+	public ResponseEntity<Void> setIsUsed(@PathVariable Long lesson_id, @PathVariable Long user_id) {
+		sliverPurchaseService.setIsUsedLesson(lesson_id, user_id);
+		return ResponseEntity.ok().<Void>build();
 	}
 }

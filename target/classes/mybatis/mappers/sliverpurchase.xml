@@ -33,4 +33,10 @@
 	<delete id="deletePurchase" parameterType="Long">
 	DELETE FROM sliver_purchase WHERE id=#{id}
 	</delete>
+	
+	<update id="setIsUsedLesson" parameterType="Long">
+	UPDATE sliver_purchase 
+	SET is_used=true
+	WHERE lesson_id=#{lesson_id} AND uid=#{user_id}
+	</update>
 </mapper>

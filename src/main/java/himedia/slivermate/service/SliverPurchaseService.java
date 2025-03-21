@@ -48,4 +48,8 @@ public class SliverPurchaseService {
 	public int deletePurchase(Long id) {
 		return sliverPurchaseMapper.deletePurchase(id);
 	}
+	
+	public void setIsUsedLesson(Long lesson_id, Long user_id) {
+		sliverPurchaseMapper.setIsUsedLesson(lesson_id, user_id);
+	}
 }

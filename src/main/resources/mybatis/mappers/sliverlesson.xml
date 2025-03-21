@@ -57,7 +57,7 @@
 	
 	<insert id="insertLesson" parameterType="sliverLesson">
 	INSERT INTO sliver_lesson (user_id, 
-								lesson_name, lesson_desc, 
+								lesson_name, lesson_desc, lesson_cost_desc, 
 								lesson_category, lesson_sub_category, 
 								lesson_free_lecture, lesson_cost_lecture, 
 								lesson_thumbnail, lesson_price, 
@@ -71,7 +71,8 @@
 	<update id="updateLesson" parameterType="sliverLesson">
 	UPDATE sliver_lesson SET
 	user_id=#{user_id}, lesson_name=#{lesson_name}, 
-	lesson_desc=#{lesson_desc}, lesson_category=#{lesson_category}, 
+	lesson_desc=#{lesson_desc}, lesson_cost_desc =#{lesson_cost_desc},
+	lesson_category=#{lesson_category}, 
 	lesson_sub_category=#{lesson_sub_category}, 
 	lesson_free_lecture=#{lesson_free_lecture}, 
 	lesson_cost_lecture=#{lesson_cost_lecture}, 

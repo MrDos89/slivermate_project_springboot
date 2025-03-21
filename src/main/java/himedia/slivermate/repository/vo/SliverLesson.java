@@ -18,6 +18,7 @@ public class SliverLesson {
 	private Long user_id;				// 강의 올린 사람 유저 아이디
 	private String lesson_name;			// 강의 이름
 	private String lesson_desc;			// 강의 설명
+	private String lesson_cost_desc;	// 강의 설명 (유료용)
 	private Integer lesson_category;		// 강의 대분류 카데고리 (실내:1, 야외:2)
 	private Integer lesson_sub_category;	// 강의 세부 카데고리
 	private String lesson_free_lecture;	// 무료 영상 (30초) 링크
