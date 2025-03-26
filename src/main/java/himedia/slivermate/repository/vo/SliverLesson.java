@@ -26,7 +26,7 @@ public class SliverLesson {
 	private String lesson_thumbnail;	// 강의 썸네일
 	private Integer lesson_price;		// 강의 가격
 	private Date register_date;			// 강의 등록 시간
-	private Boolean is_hidden;			// 강의 숨김처리 여부
+	private boolean is_hidden;			// 강의 숨김처리 여부
 	private Date upd_date;				// 강의 업데이트 시간
 	
 	private String user_name;			// 강의 올린 사람 이름

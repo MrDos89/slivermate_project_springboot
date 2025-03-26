@@ -6,6 +6,7 @@
 	<!-- VO 객체의 별칭 등록 -->
 	<typeAliases>
 		<typeAlias alias="sliverUser" type="himedia.slivermate.repository.vo.SliverUser" />
+		<typeAlias alias="sliverClub" type="himedia.slivermate.repository.vo.SliverClub" />
 		<typeAlias alias="sliverLesson" type="himedia.slivermate.repository.vo.SliverLesson" />
 		<typeAlias alias="sliverPurchase" type="himedia.slivermate.repository.vo.SliverPurchase" />
 		<typeAlias alias="sliverReport" type="himedia.slivermate.repository.vo.SliverReport" />
@@ -21,6 +22,7 @@
 	<!-- Mapper 등록 -->
 	<mappers>
 		<mapper resource="mybatis/mappers/sliveruser.xml" />
+		<mapper resource="mybatis/mappers/sliverclub.xml" />
 		<mapper resource="mybatis/mappers/sliverlesson.xml" />
 		<mapper resource="mybatis/mappers/sliverpurchase.xml" />
 		<mapper resource="mybatis/mappers/sliverreport.xml" />

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="himedia.slivermate.mappers.SliverClubMapper">
+	<select id="selectAllClubs" 
+		resultType="sliverClub">
+	SELECT club.*, user.nickname AS user_name, user.thumbnail AS user_thumbnail 
+	FROM sliver_club AS club 
+	JOIN sliver_user AS user 
+	WHERE club.user_id=user.uid ORDER BY club_id DESC
+	</select>
+	
+	<select id="selectClubsByCategoryId"
+		resultType="sliverClub">
+	SELECT club.*, user.nickname AS user_name, user.thumbnail AS user_thumbnail 
+	FROM sliver_club AS club 
+	JOIN sliver_user AS user 
+	WHERE club_category=#{category_id} AND club.user_id=user.uid
+	</select>
+
+	<select id="selectClubsBySubCategoryId"
+		resultType="sliverClub">
+	SELECT club.*, user.nickname AS user_name, user.thumbnail AS user_thumbnail
+	FROM sliver_club AS club 
+	JOIN sliver_user AS user 
+	WHERE club_category=#{category_id} 
+	AND club_sub_category=#{sub_category_id} AND club.user_id=user.uid
+	</select>
+	
+	<select id="selectRelatedClubs"
+		resultType="sliverClub">
+	SELECT club.*, user.nickname AS user_name, user.thumbnail AS user_thumbnail
+	FROM sliver_club AS club
+	LEFT JOIN sliver_user AS user ON club.user_id = user.uid
+	WHERE club.club_category = #{club_category}
+  	AND club.club_sub_category = #{club_sub_category}
+  	ORDER BY club.club_register_date DESC LIMIT 5
+	</select>
+	
+	<select id="selectClubById"
+		parameterType="Long"
+		resultType="sliverClub">
+	SELECT club.*, user.nickname AS user_name, user.thumbnail AS user_thumbnail 
+	FROM sliver_club AS club 
+	JOIN sliver_user AS user 
+	WHERE club_id=#{id} AND club.user_id=user.uid
+	</select>
+	
+	<insert id="insertClub" parameterType="sliverClub">
+	INSERT INTO sliver_club (user_id, 
+								club_name, club_desc, club_cost_desc, 
+								club_category, club_sub_category, 
+								club_free_lecture, club_cost_lecture, 
+								club_thumbnail, club_price, 
+								club_register_date, is_hidden)
+	VALUES (#{user_id}, #{club_name}, #{club_desc}, #{club_category}, 
+			#{club_sub_category}, #{club_free_lecture}, 
+			#{club_cost_lecture}, #{club_thumbnail}, 
+			#{lessosn_price}, #{club_register_date}, #{is_hidden})
+	</insert>
+	
+	<update id="updateClub" parameterType="sliverClub">
+	UPDATE sliver_club SET
+	user_id=#{user_id}, club_name=#{club_name}, 
+	club_desc=#{club_desc}, club_cost_desc =#{club_cost_desc},
+	club_category=#{club_category}, 
+	club_sub_category=#{club_sub_category}, 
+	club_free_lecture=#{club_free_lecture}, 
+	club_cost_lecture=#{club_cost_lecture}, 
+	club_thumbnail=#{club_thumbnail}, 
+	club_price=#{club_price}, 
+	club_register_date=#{club_register_date}, 
+	is_hidden=#{is_hidden}
+	WHERE club_id=#{club_id}
+	</update>
+
+	<update id="hideClub" parameterType="sliverClub">
+	UPDATE sliver_club SET
+	is_hidden=!is_hidden
+	WHERE club_id=#{club_id}
+	</update>
+	 
+	<update id="updateClubReportCnt" parameterType="sliverClub">
+	UPDATE sliver_club SET
+	report_cnt=report_cnt+#{report_cnt}
+	WHERE club_id=#{club_id}
+	</update>
+	
+	<delete id="deletePost" parameterType="Long">
+	DELETE FROM sliver_club WHERE club_id=#{club_id}
+	</delete>
+</mapper>
