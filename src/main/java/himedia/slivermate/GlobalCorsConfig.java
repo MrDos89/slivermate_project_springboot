@@ -18,5 +18,4 @@ public class GlobalCorsConfig implements WebMvcConfigurer {
 			.allowCredentials(true)
 			.maxAge(3600);	//	CORS 캐싱 허용 시간 (초단위)
 	}
-
 }

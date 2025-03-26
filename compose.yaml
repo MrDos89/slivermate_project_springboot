@@ -8,3 +8,12 @@ services:
       - 'MYSQL_USER=myuser'
     ports:
       - '3306'
+  cloud:
+    image: 'amazon/aws-cli'  # AWS CLI 도커 이미지 예시
+    environment:
+      - AWS_ACCESS_KEY_ID=fake-access-key
+      - AWS_SECRET_ACCESS_KEY=fake-secret-key
+      - AWS_DEFAULT_REGION=us-east-1
+      - AWS_S3_BUCKET=test-bucket
+    ports:
+      - '8080:8080'  # 포트 매핑이 필요한 경우 추가
