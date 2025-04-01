@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: himedia.slivermate.SlivermateApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.672 s -- in himedia.slivermate.SlivermateApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.577 s -- in himedia.slivermate.SlivermateApplicationTests

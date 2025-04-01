@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="himedia.slivermate.mappers.SliverLessonGroupMapper">
+	<select id="selectAllLessonGroups" resultType="SliverLessonGroup">
+	SELECT lesson_group.*, user.nickname AS user_name, user.thumbnail AS user_thumbnail 
+	FROM sliver_lesson_group AS lesson_group 
+	JOIN sliver_user AS user
+	WHERE lesson_group.user_id=user.uid ORDER BY lesson_group_id DESC
+	</select>
+	<select id="selectLessonsByCategoryId" resultType="SliverLessonGroup">
+	SELECT lesson_group.*, user.nickname AS user_name, user.thumbnail AS user_thumbnail 
+	FROM sliver_lesson_group AS lesson_group 
+	JOIN sliver_user AS user 
+	WHERE lesson_group_category=#{category_id} AND lesson.user_id=user.uid
+	</select>
+	<select id="selectLessonsBySubCategoryId" resultType="SliverLessonGroup">
+	SELECT lesson_group.*, user.nickname AS user_name, user.thumbnail AS user_thumbnail
+	FROM sliver_lesson_group AS lesson_group 
+	JOIN sliver_user AS user 
+	WHERE lesson_group_category=#{lesson_group_category} 
+	AND lesson_sub_category=#{lesson_group_sub_category} AND lesson.user_id=user.uid
+	</select>
+	<select id="selectLessonGroupsByUserId" resultType="SliverLessonGroup">
+	SELECT lesson_group.*, user.nickname AS user_name, user.thumbnail AS user_thumbnail
+	FROM sliver_lesson_group AS lesson_group 
+	JOIN sliver_user AS user 
+	WHERE user_id=#{user_id} AND lesson_group.user_id=user.uid
+	</select>
+	<select id="selectLessonGroupById" resultType="SliverLessonGroup">
+	SELECT lesson_group.*, user.nickname AS user_name, user.thumbnail AS user_thumbnail 
+	FROM sliver_lesson_group AS lesson_group 
+	JOIN sliver_user AS user 
+	WHERE lesson_group_id=#{lesson_group_id} AND lesson_group.user_id=user.uid
+	</select>
+	<update id="hideLessonGroup">
+	UPDATE sliver_lesson_group SET
+	is_hidden=!is_hidden
+	WHERE lesson_group_id=#{lesson_group_id}
+	</update>
+	<update id="deleteLessonGroup">
+	DELETE FROM sliver_lesson_group WHERE lesson_id=#{id}
+	</update>
+</mapper>
