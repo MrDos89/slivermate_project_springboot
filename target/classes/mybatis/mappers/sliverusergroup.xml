@@ -7,7 +7,7 @@
 	SELECT * FROM sliver_user_group ORDER BY user_group_id DESC
 	</select>
 	
-	<select id="getUserGroupUsersById" parameterType="Long" resultType="sliverUserGroup">
+	<select id="getUserGroupUsersById" parameterType="Long" resultType="sliverUser">
 	SELECT user.* FROM sliver_user_group AS user_group JOIN sliver_user AS user 
 	WHERE user_group_id=#{user_group_id} AND (user_group.user_1_id=user.uid OR 
 	user_group.user_2_id=user.uid OR 
