@@ -16,7 +16,7 @@
 	<select id="loginUser"
 		parameterType="String"
 		resultType="sliverUser">
-	SELECT * FROM sliver_user WHERE user_id=#{user_id} AND password=#{password}
+	SELECT * FROM sliver_user WHERE user_id=#{user_id} AND user_password=#{password}
 	</select>
 	
 	<insert id="registerUser" parameterType="sliverUser">
