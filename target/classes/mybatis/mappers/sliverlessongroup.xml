@@ -8,13 +8,13 @@
 	JOIN sliver_user AS user
 	WHERE lesson_group.user_id=user.uid ORDER BY lesson_group_id DESC
 	</select>
-	<select id="selectLessonsByCategoryId" resultType="SliverLessonGroup">
+	<select id="selectLessonGroupsByCategoryId" resultType="SliverLessonGroup">
 	SELECT lesson_group.*, user.nickname AS user_name, user.thumbnail AS user_thumbnail 
 	FROM sliver_lesson_group AS lesson_group 
 	JOIN sliver_user AS user 
 	WHERE lesson_group_category=#{category_id} AND lesson.user_id=user.uid
 	</select>
-	<select id="selectLessonsBySubCategoryId" resultType="SliverLessonGroup">
+	<select id="selectLessonGroupsBySubCategoryId" resultType="SliverLessonGroup">
 	SELECT lesson_group.*, user.nickname AS user_name, user.thumbnail AS user_thumbnail
 	FROM sliver_lesson_group AS lesson_group 
 	JOIN sliver_user AS user 

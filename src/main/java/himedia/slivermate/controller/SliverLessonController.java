@@ -72,7 +72,7 @@ public class SliverLessonController {
 		return ResponseEntity.ok(relatedLessons);
 	}
 
-	//	POST : /api/lesson -> 새로운 쇼핑 항목 생성
+	//	POST : /api/lesson -> 새로운 레슨 항목 생성
 	@PostMapping
 	public ResponseEntity<SliverLesson> insertLesson(@RequestBody SliverLesson lesson) {
 		SliverLesson savedLesson = sliverLessonService.insertLesson(lesson);
@@ -80,7 +80,7 @@ public class SliverLessonController {
 		//	ResponseEntity.created로 하는 것이 의미상 더 나을 수도 있다.
 	}
 
-//	PATCH : /api/lesson/{id} -> 기존 쇼핑 항목 수정
+//	PATCH : /api/lesson/{id} -> 기존 레슨 항목 수정
 	@PatchMapping("/{id}")
 	public ResponseEntity<SliverLesson> updateLesson(@RequestBody SliverLesson lesson, @PathVariable Long id) {
 		lesson.setLesson_id(id);
@@ -112,7 +112,7 @@ public class SliverLessonController {
 //		return ResponseEntity.ok(updatedPost);
 //	}
 	
-//	DELETE : /api/lesson/{pid} -> 기존 쇼핑 항목 삭제
+//	DELETE : /api/lesson/{pid} -> 기존 레슨 항목 삭제
 	@DeleteMapping("/{id}")
 	//	Body에 실어 보낼 내용이 없음 -> Void
 	public ResponseEntity<Void> deleteLesson(@PathVariable Long id) {

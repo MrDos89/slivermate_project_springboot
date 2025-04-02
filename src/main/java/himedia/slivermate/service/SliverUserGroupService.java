@@ -14,9 +14,21 @@ public class SliverUserGroupService {
 	private SliverUserGroupMapper sliverUserGroupMapper;
 	
 	// 전체 유저 불러오기
-	public List<SliverUserGroup> selectAllUsers() {
+	public List<SliverUserGroup> selectAllUserGroups() {
 		List<SliverUserGroup> userGroups = sliverUserGroupMapper.selectAllUserGroups();
 		
 		return userGroups;
+	}
+	
+	public SliverUserGroup insertUserGroup(SliverUserGroup userGroup) {
+		sliverUserGroupMapper.insertUserGroup(userGroup);
+		
+		return userGroup;
+	}
+	
+	public SliverUserGroup updateUserGroup(SliverUserGroup userGroup) {
+		sliverUserGroupMapper.updateUserGroup(userGroup);
+		
+		return userGroup;
 	}
 }

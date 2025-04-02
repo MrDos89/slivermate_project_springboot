@@ -6,4 +6,19 @@
 		resultType="sliverUserGroup">
 	SELECT * FROM sliver_user_group ORDER BY user_group_id DESC
 	</select>
+	
+	<update id="insertUserGroup"
+		parameterType="sliverUserGroup">
+	INSERT INTO sliver_user_group (user_1_id, user_2_id, user_3_id, user_4_id)
+	VALUES (#{user_1_id}, #{user_2_id}, #{user_3_id}, #{user_4_id})
+	</update>
+	
+	<update id="updateUserGroup"
+		parameterType="sliverUserGroup">
+	UPDATE sliver_user_group
+	SET user_2_id=#{user_2_id}, 
+		user_3_id=#{user_3_id}, 
+		user_4_id=#{user_4_id}
+	WHERE user_group_id=#{user_group_id}
+	</update>
 </mapper>
