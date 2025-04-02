@@ -7,6 +7,7 @@ WORKDIR /app
 # 3. jar 파일을 컨터이너로 복사
 ARG JAR_FILE=target/slivermateserver.jar
 COPY ${JAR_FILE} .
+COPY .env .
 
 # 4. 환경 변수 개방
 ENV SPRING_DATASOURCE_URL=jdbc:mysql://192.168.0.61:3306/webdb
