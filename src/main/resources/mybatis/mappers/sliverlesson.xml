@@ -43,7 +43,7 @@
 	LEFT JOIN sliver_user AS user ON lesson.user_id = user.uid
 	WHERE lesson.lesson_category = #{lesson_category}
   	AND lesson.lesson_sub_category = #{lesson_sub_category}
-  	ORDER BY lesson.lesson_register_date DESC LIMIT 5
+  	ORDER BY lesson.register_date DESC LIMIT 5
 	</select>
 	
 	<select id="selectLessonById"
@@ -56,30 +56,28 @@
 	</select>
 	
 	<insert id="insertLesson" parameterType="sliverLesson">
-	INSERT INTO sliver_lesson (user_id, 
-								lesson_name, lesson_desc, lesson_cost_desc, 
-								lesson_category, lesson_sub_category, 
-								lesson_free_lecture, lesson_cost_lecture, 
-								lesson_thumbnail, lesson_price, 
-								lesson_register_date, is_hidden)
-	VALUES (#{user_id}, #{lesson_name}, #{lesson_desc}, #{lesson_category}, 
-			#{lesson_sub_category}, #{lesson_free_lecture}, 
-			#{lesson_cost_lecture}, #{lesson_thumbnail}, 
-			#{lessosn_price}, #{lesson_register_date}, #{is_hidden})
+	INSERT INTO sliver_lesson (lesson_group_id, user_id, 
+								lesson_name, lesson_desc, lesson_category, 
+								lesson_sub_category, lesson_lecture, 
+								like_count, view_count, register_date, is_hidden, 
+								upd_date)
+	VALUES (#{lesson_group_id}, #{user_id}, #{lesson_name}, #{lesson_desc}, 
+			#{lesson_category}, #{lesson_sub_category}, 
+			#{lesson_lecture}, #{like_count}, #{view_count}, 
+			#{register_date}, #{is_hidden}, #{upd_date})
 	</insert>
 	
 	<update id="updateLesson" parameterType="sliverLesson">
 	UPDATE sliver_lesson SET
-	user_id=#{user_id}, lesson_name=#{lesson_name}, 
-	lesson_desc=#{lesson_desc}, lesson_cost_desc =#{lesson_cost_desc},
-	lesson_category=#{lesson_category}, 
+	lesson_group_id=#{lesson_group_id}, user_id=#{user_id}, lesson_name=#{lesson_name}, 
+	lesson_desc=#{lesson_desc}, lesson_category =#{lesson_category},
 	lesson_sub_category=#{lesson_sub_category}, 
-	lesson_free_lecture=#{lesson_free_lecture}, 
-	lesson_cost_lecture=#{lesson_cost_lecture}, 
-	lesson_thumbnail=#{lesson_thumbnail}, 
-	lesson_price=#{lesson_price}, 
-	lesson_register_date=#{lesson_register_date}, 
-	is_hidden=#{is_hidden}
+	lesson_lecture=#{lesson_lecture}, 
+	like_count=#{like_count}, 
+	view_count=#{view_count}, 
+	register_date=#{register_date}, 
+	is_hidden=#{is_hidden}, 
+	upd_date=#{upd_date}
 	WHERE lesson_id=#{lesson_id}
 	</update>
 
