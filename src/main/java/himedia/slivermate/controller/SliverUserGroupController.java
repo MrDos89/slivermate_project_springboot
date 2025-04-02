@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import himedia.slivermate.repository.vo.SliverUser;
 import himedia.slivermate.repository.vo.SliverUserGroup;
 import himedia.slivermate.service.SliverUserGroupService;
 
@@ -27,6 +28,14 @@ public class SliverUserGroupController {
 		List<SliverUserGroup> userGroups = sliverUserGroupService.selectAllUserGroups();
 		
 		return ResponseEntity.ok(userGroups);
+	}
+
+//	GET : /api/usergroup/{user_group_id}
+	@GetMapping
+	public ResponseEntity<List<SliverUser>> getUserGroupUsersById(@PathVariable Long user_group_id) {
+		List<SliverUser> selectedUserGroupUsers = sliverUserGroupService.getUserGroupUsersById(user_group_id);
+		
+		return ResponseEntity.ok(selectedUserGroupUsers);
 	}
 
 //	POST : /api/usergroup

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import himedia.slivermate.mappers.SliverUserGroupMapper;
+import himedia.slivermate.repository.vo.SliverUser;
 import himedia.slivermate.repository.vo.SliverUserGroup;
 
 @Service
@@ -18,6 +19,12 @@ public class SliverUserGroupService {
 		List<SliverUserGroup> userGroups = sliverUserGroupMapper.selectAllUserGroups();
 		
 		return userGroups;
+	}
+	
+	public List<SliverUser> getUserGroupUsersById(Long user_group_id) {
+		List<SliverUser> selectedUserGroupUsers = sliverUserGroupMapper.getUserGroupUsersById(user_group_id);
+		
+		return selectedUserGroupUsers;
 	}
 	
 	public SliverUserGroup insertUserGroup(SliverUserGroup userGroup) {
