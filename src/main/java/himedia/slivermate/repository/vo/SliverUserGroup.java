@@ -19,5 +19,5 @@ public class SliverUserGroup {
 	private Long user_2_id;		// 유저 2 고유 번호
 	private Long user_3_id;		// 유저 3 고유 번호
 	private Long user_4_id;		// 유저 4 고유 번호
-	private Long upd_date;		// 업데이트 날짜
+	private Date upd_date;		// 업데이트 날짜
 }
