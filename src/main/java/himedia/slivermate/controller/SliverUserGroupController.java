@@ -31,7 +31,7 @@ public class SliverUserGroupController {
 	}
 
 //	GET : /api/usergroup/{user_group_id}
-	@GetMapping
+	@GetMapping("/{user_group_id}")
 	public ResponseEntity<List<SliverUser>> getUserGroupUsersById(@PathVariable Long user_group_id) {
 		List<SliverUser> selectedUserGroupUsers = sliverUserGroupService.getUserGroupUsersById(user_group_id);
 		
