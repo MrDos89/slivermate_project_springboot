@@ -11,7 +11,7 @@ import himedia.slivermate.repository.vo.SliverUserGroup;
 public interface SliverUserGroupMapper {
 //	<select id="selectAllUserGroups" resultType="SliverUserGroup">
 	List<SliverUserGroup> selectAllUserGroups();
-//	<update id="insertUserGroup" parameterType="SliverUserGroup">	
+//	<update id="getUserGroupUsersById" parameterType="SliverUserGroup">	
 	List<SliverUser> getUserGroupUsersById(Long user_group_id);
 //	<update id="insertUserGroup" parameterType="SliverUserGroup">
 	SliverUserGroup insertUserGroup(SliverUserGroup userGroup);
