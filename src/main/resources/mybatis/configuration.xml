@@ -14,6 +14,7 @@
 		<typeAlias alias="sliverReport" type="himedia.slivermate.repository.vo.SliverReport" />
 		<typeAlias alias="sliverCategory" type="himedia.slivermate.repository.vo.SliverCategory" />
 		<typeAlias alias="sliverNotification" type="himedia.slivermate.repository.vo.SliverNotification" />
+		<typeAlias alias="sliverPost" type="himedia.slivermate.repository.vo.SliverPost"/>
 	</typeAliases>
 	
 	<!-- 타입 핸들러 등록 -->
@@ -32,5 +33,6 @@
 		<mapper resource="mybatis/mappers/sliverreport.xml" />
 		<mapper resource="mybatis/mappers/slivercategory.xml" />
 		<mapper resource="mybatis/mappers/slivernotification.xml" />
+		<mapper resource="mybatis/mappers/sliverpost.xml" />
 	</mappers>
 </configuration>
