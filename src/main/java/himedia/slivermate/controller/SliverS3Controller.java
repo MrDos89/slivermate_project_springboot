@@ -16,7 +16,7 @@ public class SliverS3Controller {
     private SliverS3Service sliverS3Service;
 
     @GetMapping("/presigned-url")
-    public String getPresignedUrl(@RequestParam String bucketName, @RequestParam String fileName) {
-        return sliverS3Service.generatePreSignedUrl(bucketName, fileName);
+    public String getPresignedUrl(@RequestParam String fileName) {
+        return sliverS3Service.generatePreSignedUrl(fileName);
     }
 }

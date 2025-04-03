@@ -1,6 +1,7 @@
 package himedia.slivermate.service;
 import java.time.Duration;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -17,10 +18,13 @@ public class SliverS3Service {
     private final S3Client s3Client;
     private final S3Presigner s3Presigner;
 
+    @Value("${s3.bucket.name}")
+    private String bucketName;
+    
     /**
      * S3에 파일을 업로드하는 메서드 (Pre-Signed URL 방식이 아닌 직접 업로드)
      */
-    public void uploadFile(String bucketName, String fileName, byte[] fileData) {
+    public void uploadFile(String fileName, byte[] fileData) {
         PutObjectRequest putObjectRequest = PutObjectRequest.builder()
                 .bucket(bucketName)
                 .key(fileName)
@@ -36,7 +40,7 @@ public class SliverS3Service {
     /**
      * Pre-Signed URL을 생성하는 메서드
      */
-    public String generatePreSignedUrl(String bucketName, String fileName) {
+    public String generatePreSignedUrl(String fileName) {
         PutObjectRequest objectRequest = PutObjectRequest.builder()
                 .bucket(bucketName)
                 .key(fileName)
