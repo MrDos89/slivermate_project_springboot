@@ -35,13 +35,7 @@ public class SliverUserController {
 	
 //	POST : /api/user/login -> 로그인
 	@PostMapping("/login")
-	public ResponseEntity<SliverUser> loginUser(@RequestBody SliverLoginData loginData, HttpSession session) {		
-		//@note - 세션 정보가 있다면
-		if(session != null && session.getAttribute("loginUser") != null) {
-			SliverUser loginUser = (SliverUser)session.getAttribute("loginUser");
-			return ResponseEntity.ok(loginUser);
-		}
-		
+	public ResponseEntity<SliverUser> loginUser(@RequestBody SliverLoginData loginData) {
 		//@note - 유저가 친 아이디나 비번이 없을 경우
 		if (loginData.getUser_id().length() == 0 || loginData.getPassword().length() == 0) {
 			System.err.println("no user_id or password");
@@ -51,17 +45,7 @@ public class SliverUserController {
 		
 		SliverUser loginUser = sliverUserService.loginUser(loginData);
 		
-		//@note - 로그인 성공
-		if (loginUser != null) {
-			// @note - 비밀번호 정보 지움
-			loginUser.setUser_password("");
-			
-			//@note -  로그인 시 세션정보 생성
-			session.setAttribute("loginUser", loginUser);
-			return ResponseEntity.ok(loginUser);
-		} else {
-			return ResponseEntity.ofNullable(null);
-		}
+		return ResponseEntity.ok(loginUser);
 	}
 	
 	//@note - 세선 정보 소멸

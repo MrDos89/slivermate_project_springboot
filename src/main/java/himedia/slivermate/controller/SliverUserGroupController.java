@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import himedia.slivermate.repository.vo.SliverUser;
 import himedia.slivermate.repository.vo.SliverUserGroup;
 import himedia.slivermate.service.SliverUserGroupService;
+import jakarta.servlet.http.HttpSession;
 
 @RestController
 @RequestMapping("/api/usergroup")
@@ -40,10 +41,26 @@ public class SliverUserGroupController {
 	
 //	GET : /api/usergroup/login/{user_id}
 	@GetMapping("/login/{user_id}")
-	public ResponseEntity<SliverUser> loginByUserIdFromUserGroup(@PathVariable Long user_id) {
+	public ResponseEntity<SliverUser> loginByUserIdFromUserGroup(@PathVariable Long user_id, HttpSession session) {
+		//@note - 세션 정보가 있다면
+		if(session != null && session.getAttribute("loginUser") != null) {
+			SliverUser loginUser = (SliverUser)session.getAttribute("loginUser");
+			return ResponseEntity.ok(loginUser);
+		}
+		
 		SliverUser loginUser = sliverUserGroupService.loginByUserIdFromUserGroup(user_id);
 		
-		return ResponseEntity.ok(loginUser);
+		//@note - 로그인 성공
+		if (loginUser != null) {
+			// @note - 비밀번호 정보 지움
+			loginUser.setUser_password("");
+			
+			//@note -  로그인 시 세션정보 생성
+			session.setAttribute("loginUser", loginUser);
+			return ResponseEntity.ok(loginUser);
+		} else {
+			return ResponseEntity.ofNullable(null);
+		}
 	}
 
 //	POST : /api/usergroup
