@@ -15,6 +15,15 @@
 	user_group.user_4_id=user.uid)
 	</select>
 	
+	<select id="loginByUserIdFromUserGroup" parameterType="Long" resultType="sliverUser">
+	SELECT user.* FROM sliver_user_group AS user_group JOIN sliver_user AS user
+	WHERE (user_group.user_1_id=#{user_id} OR
+	user_group.user_2_id=#{user_id} OR 
+	user_group.user_3_id=#{user_id} OR 
+	user_group.user_4_id=#{user_id}) AND 
+	user.uid=#{user_id}
+	</select>
+	
 	<update id="insertUserGroup"
 		parameterType="sliverUserGroup">
 	INSERT INTO sliver_user_group (user_1_id, user_2_id, user_3_id, user_4_id)

@@ -37,6 +37,14 @@ public class SliverUserGroupController {
 		
 		return ResponseEntity.ok(selectedUserGroupUsers);
 	}
+	
+//	GET : /api/usergroup/login/{user_id}
+	@GetMapping("/login/{user_id}")
+	public ResponseEntity<SliverUser> loginByUserIdFromUserGroup(@PathVariable Long user_id) {
+		SliverUser loginUser = sliverUserGroupService.loginByUserIdFromUserGroup(user_id);
+		
+		return ResponseEntity.ok(loginUser);
+	}
 
 //	POST : /api/usergroup
 	@PostMapping
