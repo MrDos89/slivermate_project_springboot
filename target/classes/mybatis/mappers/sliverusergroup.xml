@@ -21,7 +21,7 @@
 	user_group.user_2_id=#{user_id} OR 
 	user_group.user_3_id=#{user_id} OR 
 	user_group.user_4_id=#{user_id}) AND 
-	user.uid=#{user_id}
+	user.uid=#{user_id} AND user_group.user_group_id=#{user_group_id}
 	</select>
 	
 	<update id="insertUserGroup"

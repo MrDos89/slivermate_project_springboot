@@ -27,8 +27,8 @@ public class SliverUserGroupService {
 		return selectedUserGroupUsers;
 	}
 	
-	public SliverUser loginByUserIdFromUserGroup(Long user_id) {
-		SliverUser loginUser = sliverUserGroupMapper.loginByUserIdFromUserGroup(user_id);
+	public SliverUser loginByUserIdFromUserGroup(Long user_group_id, Long user_id) {
+		SliverUser loginUser = sliverUserGroupMapper.loginByUserIdFromUserGroup(user_group_id, user_id);
 		
 		return loginUser;
 	}

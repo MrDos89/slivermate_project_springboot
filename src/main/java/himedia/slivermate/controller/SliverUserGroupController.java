@@ -40,15 +40,15 @@ public class SliverUserGroupController {
 	}
 	
 //	GET : /api/usergroup/login/{user_id}
-	@GetMapping("/login/{user_id}")
-	public ResponseEntity<SliverUser> loginByUserIdFromUserGroup(@PathVariable Long user_id, HttpSession session) {
+	@GetMapping("/login/{user_group_id}/{user_id}")
+	public ResponseEntity<SliverUser> loginByUserIdFromUserGroup(@PathVariable Long user_group_id, @PathVariable Long user_id, HttpSession session) {
 		//@note - 세션 정보가 있다면
 		if(session != null && session.getAttribute("loginUser") != null) {
 			SliverUser loginUser = (SliverUser)session.getAttribute("loginUser");
 			return ResponseEntity.ok(loginUser);
 		}
 		
-		SliverUser loginUser = sliverUserGroupService.loginByUserIdFromUserGroup(user_id);
+		SliverUser loginUser = sliverUserGroupService.loginByUserIdFromUserGroup(user_group_id, user_id);
 		
 		//@note - 로그인 성공
 		if (loginUser != null) {
