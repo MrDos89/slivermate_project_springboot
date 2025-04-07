@@ -26,7 +26,7 @@ public class SliverPost {
 	private List<String> post_images; // MAP<LONG, STRING>
 	private Integer post_like_count;
 	private Integer post_comment_count;
-	private List<SliverComment> comments;
+	private List<SliverComment> post_comments;
 	private boolean is_hidden;
 	private Integer post_report_count;
 	private Date register_date;

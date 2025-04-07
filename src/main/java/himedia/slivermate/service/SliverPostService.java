@@ -19,4 +19,12 @@ public class SliverPostService {
 		
 		return posts;
 	}
+	
+	public SliverPost insertNewPost(SliverPost post) {
+		sliverPostMapper.insertNewPost(post);
+		
+		Long id = post.getPost_id();
+		
+		return sliverPostMapper.selectPostById(id);
+	}
 }

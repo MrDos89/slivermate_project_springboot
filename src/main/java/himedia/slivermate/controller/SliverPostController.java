@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,5 +25,12 @@ public class SliverPostController {
 		List<SliverPost> posts = sliverPostService.selectAllPosts();
 		
 		return ResponseEntity.ok(posts);
+	}
+	
+	@PostMapping
+	public ResponseEntity<SliverPost> insertNewPost(@RequestBody SliverPost post) {
+		SliverPost post = sliverPostService.insertNewPost(post);
+		
+		return ResponseEntity.ok(post);
 	}
 }
