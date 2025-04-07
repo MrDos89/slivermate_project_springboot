@@ -4,6 +4,9 @@
 <mapper namespace="himedia.slivermate.mappers.SliverPostMapper">
 	<select id="selectAllPosts" 
 		resultType="sliverPost">
-	SELECT * FROM sliver_post
+	SELECT post.*, user.nickname AS nickname, user.thumbnail AS user_thumbnail 
+	FROM sliver_post AS post 
+	JOIN sliver_user AS user 
+	WHERE post.post_user_id=user.uid ORDER BY post_id DESC
 	</select>
 </mapper>

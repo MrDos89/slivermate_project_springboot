@@ -22,13 +22,14 @@ public class SliverPost {
 	private Long category_id;
 	private Long sub_category_id;
 	private String post_note;
-	private Map<Long, String> post_images;
+	private List<String> post_images; // MAP<LONG, STRING>
 	private Integer post_like_count;
 	private Integer post_comment_count;
+	private List<SliverComment> comments;
 	private Date register_date;
 	private Date upd_date;
 
-	private String userThumbnail;
+	//@note - JOIN sliver_user
+	private String user_thumbnail;
 	private String nickname;
-	private List<SliverComment> comments;
 }
