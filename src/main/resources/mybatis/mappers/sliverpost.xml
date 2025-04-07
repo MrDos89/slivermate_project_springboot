@@ -50,7 +50,7 @@
 	<insert id="insertNewPost" parameterType="sliverPost">
 	INSERT INTO sliver_post (post_user_id, club_id, region_id,
 	post_category_id, post_sub_category_id, post_note, post_images,
-	post_like_count, post_comment_count, comments, is_hidden, post_report_count,
+	post_like_count, post_comment_count, post_comments, is_hidden, post_report_count,
 	register_date, upd_date, user_thumbnail, nickname)
 	VALUES (#{post_user_id}, #{club_id}, #{region_id},
 	#{post_category_id}, #{post_sub_category_id}, 
