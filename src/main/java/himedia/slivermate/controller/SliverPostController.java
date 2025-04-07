@@ -38,8 +38,8 @@ public class SliverPostController {
 	
 	@PostMapping
 	public ResponseEntity<SliverPost> insertNewPost(@RequestBody SliverPost post) {
-		SliverPost post = sliverPostService.insertNewPost(post);
+		SliverPost newPost = sliverPostService.insertNewPost(post);
 		
-		return ResponseEntity.ok(post);
+		return ResponseEntity.ok(newPost);
 	}
 }
