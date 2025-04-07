@@ -10,11 +10,15 @@ import java.util.stream.Collectors;
 
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
+import org.apache.ibatis.type.MappedJdbcTypes;
+import org.apache.ibatis.type.MappedTypes;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+@MappedTypes({List.class, Map.class})
+@MappedJdbcTypes(JdbcType.VARCHAR)
 public class JsonFlexibleTypeHandler extends BaseTypeHandler<Object> {
     private static final ObjectMapper objectMapper = new ObjectMapper();
 

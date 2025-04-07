@@ -11,7 +11,8 @@ import himedia.slivermate.repository.vo.SliverPost;
 public interface SliverPostMapper {
 //	<select id="selectAllPosts" resultType="SliverPosts">
 	List<SliverPost> selectAllPosts();
-	
+//	<select id="selectPostById" resultType="SliverPost">	
+	SliverPost selectPostById(Long post_id);
 //	<insert id="insertNewPost" parameterType="SliverPost">
 	int insertNewPost(SliverPost post);
 }
