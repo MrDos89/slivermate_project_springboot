@@ -2,8 +2,33 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="himedia.slivermate.mappers.SliverPostMapper">
-	<select id="selectAllPosts" 
-		resultType="sliverPost">
+	<resultMap id="PostResultMap" type="sliverPost">
+	    <id column="post_id" property="postId" />
+	    <result column="region_id" property="regionId" />
+	    <result column="post_user_id" property="postUserId" />
+	    <result column="club_id" property="clubId" />
+	    <result column="post_category_id" property="postCategoryId" />
+	    <result column="post_sub_category_id" property="postSubCategoryId" />
+	    <result column="post_note" property="postNote" />
+	    
+	    <!-- JSON 컬럼 -->
+	    <result column="post_images" property="postImages" 
+	            typeHandler="himedia.slivermate.typehandler.JsonFlexibleTypeHandler"/>
+	
+	    <result column="post_like_count" property="postLikeCount" />
+	    <result column="post_comment_count" property="postCommentCount" />
+	    <result column="post_comments" property="postComments" />
+	    <result column="is_hidden" property="isHidden" />
+	    <result column="post_report_count" property="postReportCount" />
+	    <result column="register_date" property="registerDate" />
+	    <result column="upd_date" property="updDate" />
+	
+	    <!-- 유저 정보 -->
+	    <result column="nickname" property="userNickname" />
+	    <result column="user_thumbnail" property="userThumbnail" />
+	</resultMap>
+
+	<select id="selectAllPosts" resultMap="himedia.slivermate.mappers.SliverPostMapper.PostResultMap">
 	SELECT post.*, user.nickname AS nickname, user.thumbnail AS user_thumbnail 
 	FROM sliver_post AS post 
 	JOIN sliver_user AS user 

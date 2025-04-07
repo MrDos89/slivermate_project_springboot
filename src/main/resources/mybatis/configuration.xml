@@ -20,9 +20,9 @@
 	</typeAliases>
 	
 	<!-- 타입 핸들러 등록 -->
-	<typeHandlers>
+	<!--  typeHandlers>
 	    <typeHandler handler="himedia.slivermate.typehandler.JsonMapTypeHandler" javaType="java.util.Map"/>
-	</typeHandlers>
+	</typeHandlers -->
 
 	<!-- Mapper 등록 -->
 	<mappers>
