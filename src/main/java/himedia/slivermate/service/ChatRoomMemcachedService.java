@@ -22,6 +22,7 @@ public class ChatRoomMemcachedService {
     public void saveLastMessage(String roomId, ChatMessageDto dto) {
         try {
             String json = objectMapper.writeValueAsString(dto);
+            System.out.println("[Memcached] saving last message to key: chat:lastMessage:" + roomId);
             memcachedClient.set("chat:lastMessage:" + roomId, EXPIRE_TIME, json);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
