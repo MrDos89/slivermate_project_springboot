@@ -17,6 +17,7 @@
 		<typeAlias alias="sliverPost" type="himedia.slivermate.repository.vo.SliverPost"/>
 		<typeAlias alias="sliverAnnouncement" type="himedia.slivermate.repository.vo.SliverAnnouncement" />
 		<typeAlias alias="sliverComment" type="himedia.slivermate.repository.vo.SliverComment" />
+		<typeAlias alias="sliverLike" type="himedia.slivermate.repository.vo.SliverLike" />
 	</typeAliases>
 	
 	<!-- 타입 핸들러 등록 -->
@@ -38,5 +39,6 @@
 		<mapper resource="mybatis/mappers/sliverpost.xml" />
 		<mapper resource="mybatis/mappers/sliverannouncement.xml" />
 		<mapper resource="mybatis/mappers/slivercomment.xml" />
+		<mapper resource="mybatis/mappers/sliverlike.xml" />
 	</mappers>
 </configuration>
