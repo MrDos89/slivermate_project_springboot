@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.mapper.SliverLikeMapper">
+
+    <!-- 좋아요 추가 -->
+    <insert id="insertLike" parameterType="SliverLike">
+        INSERT INTO sliver_post_like (post_id, user_id)
+        VALUES (#{post_id}, #{user_id})
+    </insert>
+
+    <!-- 좋아요 취소 -->
+    <delete id="deleteLike" parameterType="SliverLike">
+        DELETE FROM sliver_post_like
+        WHERE post_id = #{post_id} AND user_id = #{user_id}
+    </delete>
+
+    <!-- 좋아요 여부 확인 -->
+    <select id="isLiked" parameterType="SliverLike" resultType="int">
+        SELECT COUNT(*) FROM sliver_post_like
+        WHERE post_id = #{post_id} AND user_id = #{user_id}
+    </select>
+    
+    <select id="selectLikedPostIdsByUserId" resultType="int">
+   		SELECT post_id FROM sliver_post_like
+    	WHERE user_id = #{user_id}
+	</select>
+
+
+</mapper>
