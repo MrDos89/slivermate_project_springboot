@@ -20,7 +20,7 @@ public class DynamoDBConfiguration {
     String region = dotenv.get("AWS_REGION");  // AWS_REGION을 환경변수에서 읽어옴
     
     @Bean
-	public DynamoDbClient dynamoDbClient(){
+	DynamoDbClient dynamoDbClient(){
     	return DynamoDbClient.builder()
     			.region(Region.of(region))
     			.credentialsProvider(StaticCredentialsProvider.create(AwsBasicCredentials.create(accessKey, secretKey)))
@@ -28,7 +28,7 @@ public class DynamoDBConfiguration {
 	}
 
 	@Bean
-	public DynamoDbEnhancedClient dynamoDbEnhancedClient(@Qualifier("dynamoDbClient") DynamoDbClient dynamoDbClient){
+	DynamoDbEnhancedClient dynamoDbEnhancedClient(@Qualifier("dynamoDbClient") DynamoDbClient dynamoDbClient){
 		return DynamoDbEnhancedClient.builder()
 				.dynamoDbClient(dynamoDbClient)
 				.build();
