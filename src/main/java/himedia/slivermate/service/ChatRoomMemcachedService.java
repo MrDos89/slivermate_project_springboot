@@ -31,7 +31,10 @@ public class ChatRoomMemcachedService {
 
     public ChatMessageDto getLastMessage(String roomId) {
         Object data = memcachedClient.get("chat:lastMessage:" + roomId);
-        if (data == null) return null;
+        if (data == null) {
+            System.out.println("❌ Memcached에서 데이터 없음: " + roomId);
+            return null;
+        }
 
         try {
             return objectMapper.readValue(data.toString(), ChatMessageDto.class);
