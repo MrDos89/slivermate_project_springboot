@@ -23,7 +23,7 @@ public class MemcachedConfig {
     MemcachedClient memcachedClient() throws IOException {
         return new MemcachedClient(
             new ConnectionFactoryBuilder()
-                .setOpTimeout(5000) // 요청 타임아웃을 5초로 설정
+                .setOpTimeout(10000) // 요청 타임아웃을 5초로 설정
                 .setDaemon(true)
                 .setFailureMode(net.spy.memcached.FailureMode.Redistribute) // 실패 시 분산 재시도
                 .build(),
