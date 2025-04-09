@@ -30,15 +30,23 @@ public class ChatRoomMemcachedService {
     }
 
     public ChatMessageDto getLastMessage(String roomId) {
-        Object data = memcachedClient.get("chat:lastMessage:" + roomId);
+        String key = "chat:lastMessage:" + roomId;
+        System.out.println("🔍 Memcached 조회 시도: " + key);
+
+        Object data = memcachedClient.get(key);
         if (data == null) {
-            System.out.println("❌ Memcached에서 데이터 없음: " + roomId);
+            System.out.println("❌ Memcached에서 데이터 없음: " + key);
             return null;
         }
 
+        System.out.println("✅ Memcached에서 데이터 가져옴: " + data.toString());
+
         try {
-            return objectMapper.readValue(data.toString(), ChatMessageDto.class);
+            ChatMessageDto result = objectMapper.readValue(data.toString(), ChatMessageDto.class);
+            System.out.println("✅ JSON 디코딩 성공: " + result);
+            return result;
         } catch (JsonProcessingException e) {
+            System.out.println("🔥 JSON 디코딩 실패");
             e.printStackTrace();
             return null;
         }
