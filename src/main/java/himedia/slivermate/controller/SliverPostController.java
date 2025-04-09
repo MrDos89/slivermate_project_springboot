@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import himedia.slivermate.repository.vo.SliverLesson;
 import himedia.slivermate.repository.vo.SliverPost;
 import himedia.slivermate.service.SliverPostService;
 
@@ -42,4 +42,11 @@ public class SliverPostController {
 		
 		return ResponseEntity.ok(newPost);
 	}
+	
+	@GetMapping("/with-like")
+	public ResponseEntity<List<SliverPost>> selectAllPostsWithUserLike(@RequestParam int userId) {
+	    List<SliverPost> posts = sliverPostService.selectAllPostsWithUserLike(userId);
+	    return ResponseEntity.ok(posts);
+	}
+
 }

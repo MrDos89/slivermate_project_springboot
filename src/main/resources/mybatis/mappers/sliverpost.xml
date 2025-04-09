@@ -30,6 +30,10 @@
 	    <!-- 유저 정보 -->
 	    <result column="nickname" property="nickname" />
 	    <result column="user_thumbnail" property="user_thumbnail" />
+	    
+	    <!-- 좋아요 정보 -->
+	    <result column="liked_by_me" property="likedByMe"/>
+
 	</resultMap>
 
 	<select id="selectAllPosts" resultMap="himedia.slivermate.mappers.SliverPostMapper.PostResultMap">
@@ -46,6 +50,20 @@
 	WHERE post.post_user_id=user.uid AND post.post_id=#{post_id}
 	</select>
 	
+	<select id="selectAllPostsWithUserLike" resultMap="himedia.slivermate.mappers.SliverPostMapper.PostResultMap">
+	  SELECT 
+	    post.*, 
+	    user.nickname AS nickname, 
+	    user.thumbnail AS user_thumbnail, 
+	    EXISTS (
+	      SELECT 1 
+	      FROM sliver_post_like 
+	      WHERE post_id = post.post_id AND user_id = #{userId}
+	    ) AS liked_by_me
+	  FROM sliver_post post
+	  JOIN sliver_user user ON post.post_user_id = user.uid
+	  ORDER BY post.post_id DESC
+	</select>
 	
 	<insert id="insertNewPost" parameterType="sliverPost">
 	INSERT INTO sliver_post (post_user_id, club_id, region_id,
@@ -59,4 +77,5 @@
 	#{post_comments, typeHandler=himedia.slivermate.typehandler.JsonFlexibleTypeHandler}, 
 	#{is_hidden}, #{post_report_count}, #{register_date})
 	</insert>
+	
 </mapper>

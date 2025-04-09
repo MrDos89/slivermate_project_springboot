@@ -5,6 +5,8 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import himedia.slivermate.repository.vo.SliverLike;
+import org.apache.ibatis.annotations.Param;
+
 
 @Mapper
 public interface SliverLikeMapper {
@@ -20,4 +22,9 @@ public interface SliverLikeMapper {
 	
 //	<select id="selectLikedPostIdsByUserId" resultType="SliverLike">
 	List<Integer> selectLikedPostIdsByUserId(int userId);
+	
+	int getLikeCount(int postId);
+
+	void updatePostLikeCount(@Param("postId") int postId, @Param("likeCount") int likeCount);
+
 }

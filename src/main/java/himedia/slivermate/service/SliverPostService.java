@@ -33,4 +33,8 @@ public class SliverPostService {
 		
 		return sliverPostMapper.selectPostById(id);
 	}
+	
+	public List<SliverPost> selectAllPostsWithUserLike(int userId) {
+	    return sliverPostMapper.selectAllPostsWithUserLike(userId);
+	}
 }

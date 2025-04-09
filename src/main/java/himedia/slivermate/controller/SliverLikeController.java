@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,5 +34,14 @@ public class SliverLikeController {
     public ResponseEntity<String> toggleLike(@RequestParam int postId, @RequestParam int userId) {
         boolean liked = sliverLikeService.toggleLike(postId, userId);
         return ResponseEntity.ok(liked ? "liked" : "unliked");
+    }
+    
+    @PatchMapping("/updateCount")
+    public ResponseEntity<Map<String, Object>> toggleLikeAndUpdateCount(
+        @RequestParam int postId,
+        @RequestParam int userId) {
+
+        Map<String, Object> result = sliverLikeService.toggleLikeAndUpdateCount(postId, userId);
+        return ResponseEntity.ok(result);
     }
 }
