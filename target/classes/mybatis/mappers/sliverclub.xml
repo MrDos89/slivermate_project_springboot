@@ -49,9 +49,9 @@
 	<select id="selectJoinedClubsByUserId"
 		parameterType="Long"
 		resultType="sliverClub">
-	SELECT *
-	FROM sliver_club
-	WHERE JSON_CONTAINS(club_member_list, JSON_ARRAY('#{uid}'), '$');
+    SELECT *
+    FROM sliver_club
+    WHERE JSON_CONTAINS(club_member_list, JSON_ARRAY(CAST(#{uid} AS CHAR)), '$')
 	</select>
 	
 	<insert id="insertClub" parameterType="sliverClub">
