@@ -9,6 +9,7 @@ echo "Running Maven build..."
 mvn clean package || { echo "Maven build failed"; exit 1; }
 
 docker rmi -f mrdos89/slivermateserver:latest
+docker rmi -f $(docker images -f "dangling=true" -q)
 
 docker build --platform linux/amd64 -t slivermateserver .
 
