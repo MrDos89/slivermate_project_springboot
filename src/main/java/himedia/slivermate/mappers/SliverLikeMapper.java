@@ -26,5 +26,5 @@ public interface SliverLikeMapper {
 	int getLikeCount(int postId);
 
 	void updatePostLikeCount(@Param("postId") int postId, @Param("likeCount") int likeCount);
-
+	
 }

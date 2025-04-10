@@ -35,7 +35,7 @@
 	<!-- 게시글 테이블의 좋아요 수 업데이트 -->
 	<update id="updatePostLikeCount">
 	    UPDATE sliver_post
-	    SET post_like_count = #{post_like_count}
+	    SET post_like_count = #{likeCount}
 	    WHERE post_id = #{post_id}
 	</update>
 
