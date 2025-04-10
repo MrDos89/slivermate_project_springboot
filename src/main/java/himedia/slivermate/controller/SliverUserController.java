@@ -79,7 +79,7 @@ public class SliverUserController {
 		return ResponseEntity.ok().<Void>build();
 	}
 	
-//	Session : /api/session -> 로그인 상태 확인
+//	Session : /api/user/session -> 로그인 상태 확인
 	@GetMapping("/session")
 	public ResponseEntity<SliverUser> getSessionUser(HttpSession session) {
 		SliverUser loginUser = (SliverUser) session.getAttribute("loginUser");
