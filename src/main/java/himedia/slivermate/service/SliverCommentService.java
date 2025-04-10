@@ -18,4 +18,8 @@ public class SliverCommentService {
 		
 		return comments;
 	}
+	
+	 public void insertComment(SliverComment comment) {
+	        sliverCommentMapper.insertComment(comment);
+	    }
 }
