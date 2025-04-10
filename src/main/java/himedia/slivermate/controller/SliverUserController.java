@@ -49,7 +49,7 @@ public class SliverUserController {
 	}
 	
 	//@note - 세선 정보 소멸
-	@PostMapping("/logout")
+	@GetMapping("/logout")
 	public void logout(HttpSession session) {
 		session.removeAttribute("loginUser");
 		session.invalidate();
