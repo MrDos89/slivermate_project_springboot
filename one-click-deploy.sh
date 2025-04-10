@@ -8,6 +8,8 @@ set -e
 echo "Running Maven build..."
 mvn clean package || { echo "Maven build failed"; exit 1; }
 
+docker rmi -f mrdos89/slivermateserver:latest
+
 docker build --platform linux/amd64 -t slivermateserver .
 
 docker tag slivermateserver mrdos89/slivermateserver
