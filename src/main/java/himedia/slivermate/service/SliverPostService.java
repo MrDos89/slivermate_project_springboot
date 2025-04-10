@@ -33,4 +33,31 @@ public class SliverPostService {
 		
 		return sliverPostMapper.selectPostById(id);
 	}
+	
+	public SliverPost updatePostLikeCount(Long post_id, boolean isLiked) {
+	    // 게시글을 먼저 조회
+	    SliverPost post = sliverPostMapper.selectPostById(post_id);
+
+	    if (post != null) {
+	        // 현재 좋아요 상태가 다르면
+	        if (post.getLikedByMe() != isLiked) {  // getLikedByMe()로 변경
+	            if (isLiked) {
+	                // 좋아요를 추가하는 경우
+	                post.setPost_like_count(post.getPost_like_count() + 1); // 좋아요 수 증가
+	            } else {
+	                // 좋아요를 취소하는 경우
+	                post.setPost_like_count(post.getPost_like_count() - 1); // 좋아요 수 감소
+	            }
+
+	            // 데이터베이스에 업데이트된 좋아요 수 반영
+	            sliverPostMapper.updatePostLikeCount(post_id, post.getPost_like_count());
+	        }
+
+	        // 좋아요 상태를 갱신 (isLikedByMe가 true/false로 변경)
+	        post.setLikedByMe(isLiked);  // setLikedByMe()로 변경
+	    }
+
+	    return post;
+	}
+
 }

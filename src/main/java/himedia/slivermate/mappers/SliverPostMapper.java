@@ -16,5 +16,5 @@ public interface SliverPostMapper {
 	int insertNewPost(SliverPost post);
 	
 //	<select id="updatePostLikeCount" resultType="SliverPost">
-	int updatePostLikeCount(int post_like_count);
+	void updatePostLikeCount(Long post_id, Integer post_like_count);
 }

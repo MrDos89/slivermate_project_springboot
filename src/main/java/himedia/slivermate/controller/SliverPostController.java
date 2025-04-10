@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -40,5 +41,13 @@ public class SliverPostController {
 		SliverPost newPost = sliverPostService.insertNewPost(post);
 		
 		return ResponseEntity.ok(newPost);
+	}
+	
+	 @PatchMapping("/updateCount")
+	 public ResponseEntity<SliverPost> updatePostLikeCount(@RequestBody Long post_id, boolean isLiked) {
+	     // 포스트 ID를 전달받아 좋아요 수를 업데이트
+	     SliverPost updatedPost = sliverPostService.updatePostLikeCount(post_id, isLiked);
+	     
+	     return ResponseEntity.ok(updatedPost);
 	}
 }
