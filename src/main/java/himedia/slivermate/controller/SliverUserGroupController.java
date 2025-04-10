@@ -3,6 +3,7 @@ package himedia.slivermate.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -78,5 +79,17 @@ public class SliverUserGroupController {
 		SliverUserGroup newUserGroup = sliverUserGroupService.updateUserGroup(userGroup);
 		
 		return ResponseEntity.ok(newUserGroup);
+	}
+	
+//	Session : /api/usergroup/session -> 로그인 상태 확인
+	@GetMapping("/session")
+	public ResponseEntity<SliverUser> getSessionUser(HttpSession session) {
+		SliverUser loginUser = (SliverUser) session.getAttribute("loginUser");
+		
+		if (loginUser != null) {
+			return ResponseEntity.ok(loginUser);
+		} else {
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+		}
 	}
 }
