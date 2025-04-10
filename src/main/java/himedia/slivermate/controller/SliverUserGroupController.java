@@ -39,7 +39,7 @@ public class SliverUserGroupController {
 		return ResponseEntity.ok(selectedUserGroupUsers);
 	}
 	
-//	GET : /api/usergroup/login/{user_id}
+//	GET : /api/usergroup/login/{user_group_id}/{user_id}
 	@GetMapping("/login/{user_group_id}/{user_id}")
 	public ResponseEntity<SliverUser> loginByUserIdFromUserGroup(@PathVariable Long user_group_id, @PathVariable Long user_id, HttpSession session) {
 		//@note - 세션 정보가 있다면
