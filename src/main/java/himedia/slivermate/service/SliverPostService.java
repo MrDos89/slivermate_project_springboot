@@ -40,7 +40,7 @@ public class SliverPostService {
 
 	    if (post != null) {
 	        // 현재 좋아요 상태가 다르면
-	        if (post.getLikedByMe() != isLiked) {  // getLikedByMe()로 변경
+	        if (post.getLikedByMe() != isLiked) {
 	            if (isLiked) {
 	                // 좋아요를 추가하는 경우
 	                post.setPost_like_count(post.getPost_like_count() + 1); // 좋아요 수 증가
@@ -54,10 +54,15 @@ public class SliverPostService {
 	        }
 
 	        // 좋아요 상태를 갱신 (isLikedByMe가 true/false로 변경)
-	        post.setLikedByMe(isLiked);  // setLikedByMe()로 변경
+	        post.setLikedByMe(isLiked);
 	    }
 
 	    return post;
 	}
+	
+	public List<SliverPost> selectAllPostsWithUserLike(int user_id) {
+	    return sliverPostMapper.selectAllPostsWithUserLike(user_id);
+	}
+
 
 }
