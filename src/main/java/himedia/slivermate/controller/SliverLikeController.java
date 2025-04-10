@@ -23,8 +23,8 @@ public class SliverLikeController {
     private SliverLikeService sliverLikeService;
 
     @GetMapping("/checkAll")
-    public ResponseEntity<Map<String, Object>> getLikedPostIds(@RequestParam int userId) {
-        List<Integer> likedPostIds = sliverLikeService.getLikedPostIds(userId);
+    public ResponseEntity<Map<String, Object>> getLikedPostIds(@RequestParam int user_id) {
+        List<Integer> likedPostIds = sliverLikeService.getLikedPostIds(user_id);
         Map<String, Object> result = new HashMap<>();
         result.put("likedPostIds", likedPostIds);
         return ResponseEntity.ok(result);

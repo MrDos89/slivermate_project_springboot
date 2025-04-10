@@ -21,7 +21,7 @@ public interface SliverLikeMapper {
 	int isLiked(SliverLike like);  
 	
 //	<select id="selectLikedPostIdsByUserId" resultType="SliverLike">
-	List<Integer> selectLikedPostIdsByUserId(int userId);
+	List<Integer> selectLikedPostIdsByUserId(int user_id);
 	
 	int getLikeCount(int postId);
 
