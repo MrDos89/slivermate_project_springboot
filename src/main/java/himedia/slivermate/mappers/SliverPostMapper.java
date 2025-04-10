@@ -3,7 +3,6 @@ package himedia.slivermate.mappers;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 
 import himedia.slivermate.repository.vo.SliverPost;
 
@@ -15,6 +14,7 @@ public interface SliverPostMapper {
 	SliverPost selectPostById(Long post_id);
 //	<insert id="insertNewPost" parameterType="SliverPost">
 	int insertNewPost(SliverPost post);
-//	<insert id="selectAllPostsWithUserLike" parameterType="SliverPost">
-	List<SliverPost> selectAllPostsWithUserLike(@Param("userId") int userId);
+	
+//	<select id="updatePostLikeCount" resultType="SliverPost">
+	int updatePostLikeCount(int post_like_count);
 }
