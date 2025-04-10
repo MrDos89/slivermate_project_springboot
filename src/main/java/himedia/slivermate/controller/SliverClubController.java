@@ -54,7 +54,7 @@ public class SliverClubController {
 		return ResponseEntity.ok(club);
 	}
 	
-	@GetMapping("/{user_id}/joined")
+	@GetMapping("/{uid}/joined")
 	public ResponseEntity<List<SliverClub>> selectJoinedClubsByUserId(@PathVariable Long uid) {
 		List<SliverClub> clubs = sliverClubService.selectJoinedClubsByUserId(uid);
 		
