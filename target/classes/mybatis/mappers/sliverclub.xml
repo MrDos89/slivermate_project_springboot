@@ -46,6 +46,14 @@
 	WHERE club_id=#{id} AND club.user_id=user.uid
 	</select>
 	
+	<select id="selectJoinedClubsByUserId"
+		parameterType="Long"
+		resultType="sliverClub">
+	SELECT *
+	FROM sliver_club
+	WHERE JSON_CONTAINS(club_member_list, JSON_ARRAY('#{uid}'), '$');
+	</select>
+	
 	<insert id="insertClub" parameterType="sliverClub">
 	INSERT INTO sliver_club (user_id, 
 								club_name, club_desc, club_cost_desc, 

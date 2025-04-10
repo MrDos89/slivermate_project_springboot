@@ -18,6 +18,8 @@ public interface SliverClubMapper {
 	List<SliverClub> selectRelatedClubs(SliverClub club);
 //	<select id="selectClubsByClubId" resultType="SliverClub">
 	SliverClub selectClubById(Long id);
+//	<select id="selectJoinedClubsByUserId" resultType="SliverClub">
+	List<SliverClub> selectJoinedClubsByUserId(Long user_id);
 //	<insert id="insertClub" parameterType="SliverClub">
 	int insertClub(SliverClub club);
 //	<update id="updateClub" parameterType="SliverClub">

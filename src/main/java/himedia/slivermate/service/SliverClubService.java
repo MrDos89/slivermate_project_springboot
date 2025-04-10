@@ -37,6 +37,12 @@ public class SliverClubService {
 		return club;
 	}
 	
+	public List<SliverClub> selectJoinedClubsByUserId(Long user_id) {
+		List<SliverClub> clubs = sliverClubMapper.selectJoinedClubsByUserId(user_id);
+		
+		return clubs;
+	}
+	
 	public List<SliverClub> selectRelatedClubs(SliverClub club) {
 		List<SliverClub> clubs = sliverClubMapper.selectRelatedClubs(club);
 		
