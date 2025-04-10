@@ -35,4 +35,14 @@ public class SliverLikeController {
         return ResponseEntity.ok(liked ? "liked" : "unliked");
     }
     
+    @PostMapping("/toggle")
+    public ResponseEntity<Map<String, Object>> toggleLikeAndCount(
+        @RequestParam int post_id,
+        @RequestParam int user_id
+    ) {
+        Map<String, Object> result = sliverLikeService.toggleLikeAndUpdateCount(post_id, user_id);
+        return ResponseEntity.ok(result);
+    }
+
+    
 }
