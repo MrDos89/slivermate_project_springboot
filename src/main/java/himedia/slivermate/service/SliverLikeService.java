@@ -8,13 +8,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import himedia.slivermate.repository.vo.SliverLike;
+import himedia.slivermate.mappers.SliverPostMapper;
 
 @Service
 public class SliverLikeService {
 
 	@Autowired
 	private himedia.slivermate.mappers.SliverLikeMapper sliverLikeMapper;
-
+	@Autowired
+	private SliverPostMapper sliverPostMapper;
+	
 //	// 좋아요 이미 한 건지 확인
 	public boolean isLiked(int post_id, int user_id) {
 		SliverLike like = new SliverLike();
@@ -43,27 +46,33 @@ public class SliverLikeService {
 	}
 
 	public Map<String, Object> toggleLikeAndUpdateCount(int post_id, int user_id) {
-		SliverLike like = new SliverLike();
-		like.setPost_id(post_id);
-		like.setUser_id(user_id);
+	    SliverLike like = new SliverLike();
+	    like.setPost_id(post_id);
+	    like.setUser_id(user_id);
 
-		// 1. 좋아요 토글
-		boolean liked;
-		if (sliverLikeMapper.isLiked(like) > 0) {
-			sliverLikeMapper.deleteLike(like);
-			liked = false;
-		} else {
-			sliverLikeMapper.insertLike(like);
-			liked = true;
-		}
+	    boolean liked;
 
-		// 2. 전체 좋아요 수 가져오기
-		int post_like_count = sliverLikeMapper.getLikeCount(post_id);
+	    // 1. 토글 처리
+	    if (sliverLikeMapper.isLiked(like) > 0) {
+	        sliverLikeMapper.deleteLike(like);
+	        liked = false;
+	    } else {
+	        sliverLikeMapper.insertLike(like);
+	        liked = true;
+	    }
 
-		// 3. 결과 리턴
-		Map<String, Object> result = new HashMap<>();
-		result.put("liked", liked);
-		return result;
+	    // 2. 전체 좋아요 수 가져오기
+	    int post_like_count = sliverLikeMapper.getLikeCount(post_id);
+
+	    // 3. 게시글 테이블에도 반영 (PostMapper 호출)
+	    sliverPostMapper.updatePostLikeCount((long) post_id, post_like_count);
+
+	    // 4. 결과 반환
+	    Map<String, Object> result = new HashMap<>();
+	    result.put("liked", liked);
+	    result.put("post_like_count", post_like_count); // count도 넘김
+	    return result;
 	}
+
 
 }
