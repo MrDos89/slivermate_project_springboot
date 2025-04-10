@@ -35,4 +35,7 @@ public class SliverPost {
 	//@note - JOIN sliver_user
 	private String user_thumbnail;
 	private String nickname;
+	
+	// 가상 컬럼
+	private Boolean likedByMe;
 }

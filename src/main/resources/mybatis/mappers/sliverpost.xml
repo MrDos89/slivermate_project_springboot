@@ -55,11 +55,14 @@
 	    post.*, 
 	    user.nickname AS nickname, 
 	    user.thumbnail AS user_thumbnail, 
-	    EXISTS (
-	      SELECT 1 
-	      FROM sliver_post_like 
-	      WHERE post_id = post.post_id AND user_id = #{userId}
-	    ) AS liked_by_me
+	    CASE
+	      WHEN EXISTS (
+	        SELECT 1 
+	        FROM sliver_post_like 
+	        WHERE post_id = post.post_id AND user_id = #{user_id}
+	      ) THEN 1
+	      ELSE 0
+	    END AS liked_by_me
 	  FROM sliver_post post
 	  JOIN sliver_user user ON post.post_user_id = user.uid
 	  ORDER BY post.post_id DESC

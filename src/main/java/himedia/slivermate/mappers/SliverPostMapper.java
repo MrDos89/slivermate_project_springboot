@@ -16,5 +16,5 @@ public interface SliverPostMapper {
 //	<insert id="insertNewPost" parameterType="SliverPost">
 	int insertNewPost(SliverPost post);
 //	<insert id="selectAllPostsWithUserLike" parameterType="SliverPost">
-	List<SliverPost> selectAllPostsWithUserLike(@Param("userId") int userId);
+	List<SliverPost> selectAllPostsWithUserLike(@Param("user_id") int user_id);
 }
