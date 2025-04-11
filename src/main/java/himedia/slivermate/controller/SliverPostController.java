@@ -47,9 +47,9 @@ public class SliverPostController {
 	@PatchMapping("/updateCount")
 	public ResponseEntity<SliverPost> updatePostLikeCount(
 	    @RequestParam Long post_id,
-	    @RequestParam boolean likedByMe) {
+	    @RequestParam boolean liked_by_me) {
 	    
-	    SliverPost updatedPost = sliverPostService.updatePostLikeCount(post_id, likedByMe);
+	    SliverPost updatedPost = sliverPostService.updatePostLikeCount(post_id, liked_by_me);
 	    return ResponseEntity.ok(updatedPost);
 	}
 

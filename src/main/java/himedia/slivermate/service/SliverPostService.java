@@ -28,10 +28,14 @@ public class SliverPostService {
 	
 	public SliverPost insertNewPost(SliverPost post) {
 		sliverPostMapper.insertNewPost(post);
-		
+
 		Long id = post.getPost_id();
-		
-		return sliverPostMapper.selectPostById(id);
+		SliverPost insertedPost = sliverPostMapper.selectPostById(id);
+
+		// 새로 작성된 글은 당연히 좋아요를 누른 상태가 아니므로 false로 설정
+		insertedPost.setLikedByMe(false);
+
+		return insertedPost;
 	}
 	
 	public SliverPost updatePostLikeCount(Long post_id, boolean isLiked) {
@@ -60,6 +64,7 @@ public class SliverPostService {
 	    return post;
 	}
 	
+
 	public List<SliverPost> selectAllPostsWithUserLike(int user_id) {
 	    return sliverPostMapper.selectAllPostsWithUserLike(user_id);
 	}
