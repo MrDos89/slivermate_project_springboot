@@ -51,20 +51,8 @@
 	</select>
 	
 	<select id="selectAllPostsWithUserLike" resultMap="himedia.slivermate.mappers.SliverPostMapper.PostResultMap">
-	  SELECT 
-	    post.*, 
-	    user.nickname AS nickname, 
-	    user.thumbnail AS user_thumbnail, 
-	    CASE
-	      WHEN spl.user_id IS NOT NULL THEN true
-	      ELSE false
-	    END AS liked_by_me
-	  FROM sliver_post post
-	  JOIN sliver_user user ON post.post_user_id = user.uid
-	  LEFT JOIN sliver_post_like spl 
-	    ON post.post_id = spl.post_id 
-	    AND spl.user_id = #{user_id}
-	  ORDER BY post.post_id DESC
+	  SELECT post.*, post_like.is_liked FROM sliver_post AS post JOIN sliver_user AS user JOIN sliver_post_like AS post_like 
+      WHERE post.post_id=post_like.post_id AND post_like.user_id=user.uid AND user.uid=#{user_id};
 	</select>
 	
 	<insert id="insertNewPost" parameterType="sliverPost">
