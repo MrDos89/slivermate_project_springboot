@@ -4,32 +4,54 @@
 
 <mapper namespace="himedia.slivermate.mappers.SliverLikeMapper">
 
+	<!-- 좋아요 수 가져오기 -->
+	<select id="getLikeCount" resultType="int">
+	    SELECT COUNT(*) FROM sliver_post_like WHERE post_id = #{post_id}
+	    AND is_liked=true
+	</select>
+	
+	<!-- userId 기준 좋아요 가져오기 -->
+	<select id="selectLikedPostIdsByUserId" resultType="int">
+   		SELECT post_id FROM sliver_post_like
+    	WHERE user_id = #{user_id}
+	</select>
+	
     <!-- 좋아요 추가 -->
     <insert id="insertLike" parameterType="SliverLike">
         INSERT INTO sliver_post_like (post_id, user_id)
         VALUES (#{post_id}, #{user_id})
     </insert>
+    
+    <!-- 게시글 테이블의 좋아요 수 업데이트 -->
+	<update id="updateLike">
+	    UPDATE sliver_post_like
+	    SET is_liked = true
+	    WHERE post_id = #{post_id} AND user_id = #{user_id}
+	</update>
 
     <!-- 좋아요 취소 -->
-    <delete id="deleteLike" parameterType="SliverLike">
+    <update id="deleteLike" parameterType="SliverLike">
         DELETE FROM sliver_post_like
+        SET is_liked=false
         WHERE post_id = #{post_id} AND user_id = #{user_id}
-    </delete>
+    </update>
 
     <!-- 좋아요 여부 확인 -->
     <select id="isLiked" parameterType="SliverLike" resultType="int">
         SELECT COUNT(*) FROM sliver_post_like
-        WHERE post_id = #{post_id} AND user_id = #{user_id}
+        WHERE post_id = #{post_id} AND user_id = #{user_id} AND is_liked=true
     </select>
     
-    <select id="selectLikedPostIdsByUserId" resultType="int">
-   		SELECT post_id FROM sliver_post_like
-    	WHERE user_id = #{user_id}
-	</select>
-	
-	<!-- 좋아요 수 가져오기 -->
-	<select id="getLikeCount" resultType="int">
-	    SELECT COUNT(*) FROM sliver_post_like WHERE post_id = #{post_id}
-	</select>
+    <select id="exists" parameterType="SliverLike" resultType="int">
+    	 SELECT COUNT(*) FROM sliver_post_like
+    	 WHERE user_id=#{user_id} AND post_id = #{post_id}
+    </select>
+    
 
+	
+	
+
+
+	
+	
 </mapper>
