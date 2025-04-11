@@ -18,9 +18,9 @@
 	
     <!-- 좋아요 추가 -->
     <insert id="insertLike" parameterType="SliverLike">
-        INSERT INTO sliver_post_like (post_id, user_id)
-        VALUES (#{post_id}, #{user_id})
-    </insert>
+    INSERT INTO sliver_post_like (post_id, user_id, is_liked)
+    VALUES (#{post_id}, #{user_id}, true)
+	</insert>
     
     <!-- 게시글 테이블의 좋아요 수 업데이트 -->
 	<update id="updateLike">
@@ -31,7 +31,7 @@
 
     <!-- 좋아요 취소 -->
     <update id="deleteLike" parameterType="SliverLike">
-        DELETE FROM sliver_post_like
+        UPDATE sliver_post_like
         SET is_liked=false
         WHERE post_id = #{post_id} AND user_id = #{user_id}
     </update>
@@ -46,12 +46,5 @@
     	 SELECT COUNT(*) FROM sliver_post_like
     	 WHERE user_id=#{user_id} AND post_id = #{post_id}
     </select>
-    
 
-	
-	
-
-
-	
-	
 </mapper>
