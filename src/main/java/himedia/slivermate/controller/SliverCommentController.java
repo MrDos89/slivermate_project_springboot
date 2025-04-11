@@ -26,7 +26,7 @@ public class SliverCommentController {
 		return ResponseEntity.ok(comments);
 	}
 	
-    @PostMapping
+    @PostMapping("/newcomment")
     public ResponseEntity<String> insertComment(@RequestBody SliverComment comment) {
         sliverCommentService.insertComment(comment);
         return ResponseEntity.ok("success");
