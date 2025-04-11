@@ -33,37 +33,28 @@ public class SliverPostService {
 		SliverPost insertedPost = sliverPostMapper.selectPostById(id);
 
 		// 새로 작성된 글은 당연히 좋아요를 누른 상태가 아니므로 false로 설정
-		insertedPost.setLikedByMe(false);
+		insertedPost.setLiked_by_me(false);
 
 		return insertedPost;
 	}
 	
 	public SliverPost updatePostLikeCount(Long post_id, boolean isLiked) {
-	    // 게시글을 먼저 조회
 	    SliverPost post = sliverPostMapper.selectPostById(post_id);
 
 	    if (post != null) {
-	        // 현재 좋아요 상태가 다르면
-	        if (post.getLikedByMe() != isLiked) {
-	            if (isLiked) {
-	                // 좋아요를 추가하는 경우
-	                post.setPost_like_count(post.getPost_like_count() + 1); // 좋아요 수 증가
-	            } else {
-	                // 좋아요를 취소하는 경우
-	                post.setPost_like_count(post.getPost_like_count() - 1); // 좋아요 수 감소
-	            }
-
-	            // 데이터베이스에 업데이트된 좋아요 수 반영
+	        if (post.isLiked_by_me() != isLiked) {
+	            int count = post.getPost_like_count();
+	            post.setPost_like_count(isLiked ? count + 1 : count - 1);
 	            sliverPostMapper.updatePostLikeCount(post_id, post.getPost_like_count());
 	        }
 
-	        // 좋아요 상태를 갱신 (isLikedByMe가 true/false로 변경)
-	        post.setLikedByMe(isLiked);
+	        post.setLiked_by_me(isLiked);
 	    }
 
 	    return post;
 	}
-	
+
+
 
 	public List<SliverPost> selectAllPostsWithUserLike(int user_id) {
 	    return sliverPostMapper.selectAllPostsWithUserLike(user_id);
