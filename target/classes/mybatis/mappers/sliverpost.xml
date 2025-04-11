@@ -60,13 +60,14 @@
 	        SELECT 1 
 	        FROM sliver_post_like 
 	        WHERE post_id = post.post_id AND user_id = #{user_id}
-	      ) THEN 1
-	      ELSE 0
+	      ) THEN true
+	      ELSE false
 	    END AS liked_by_me
 	  FROM sliver_post post
 	  JOIN sliver_user user ON post.post_user_id = user.uid
 	  ORDER BY post.post_id DESC
 	</select>
+
 	
 	<insert id="insertNewPost" parameterType="sliverPost">
 	INSERT INTO sliver_post (post_user_id, club_id, region_id,
