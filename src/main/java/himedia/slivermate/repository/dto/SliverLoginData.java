@@ -1,4 +1,4 @@
-package himedia.slivermate.repository.vo;
+package himedia.slivermate.repository.dto;
 
 import java.util.Date;
 

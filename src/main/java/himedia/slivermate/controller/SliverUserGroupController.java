@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import himedia.slivermate.repository.dto.SliverPinPasswordData;
 import himedia.slivermate.repository.vo.SliverUser;
 import himedia.slivermate.repository.vo.SliverUserGroup;
 import himedia.slivermate.service.SliverUserGroupService;
@@ -67,13 +68,14 @@ public class SliverUserGroupController {
 	
 //	GET : /api/usergroup/login/{user_group_id}/{user_id}
 	@PostMapping("/login/{user_group_id}/{user_id}")
-	public ResponseEntity<SliverUser> loginByUserIdWithPinPassword(@RequestBody String pin_password, @PathVariable Long user_group_id, @PathVariable Long user_id, HttpSession session) {
-
+	public ResponseEntity<SliverUser> loginByUserIdWithPinPassword(@RequestBody SliverPinPasswordData pinData, @PathVariable Long user_group_id, @PathVariable Long user_id, HttpSession session) {
+		String pin_password = pinData.getPin_password();
+		
 		//@note - 세션 정보가 있다면
 		if(session != null && session.getAttribute("loginUser") != null) {
 			SliverUser loginUser = (SliverUser)session.getAttribute("loginUser");
 			
-			if(pin_password != loginUser.getPin_password()) {
+			if(!pin_password.equals(loginUser.getPin_password())) {
 				return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
 			}
 			// @note - 핀 비밀번호 정보 지움
@@ -86,7 +88,7 @@ public class SliverUserGroupController {
 		
 		//@note - 로그인 성공
 		if (loginUser != null) {
-			if(pin_password != loginUser.getPin_password()) {
+			if(!pin_password.equals(loginUser.getPin_password())) {
 				return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
 			}
 			

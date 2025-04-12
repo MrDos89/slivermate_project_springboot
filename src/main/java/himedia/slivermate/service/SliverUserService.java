@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import himedia.slivermate.mappers.SliverUserMapper;
-import himedia.slivermate.repository.vo.SliverLoginData;
+import himedia.slivermate.repository.dto.SliverLoginData;
 import himedia.slivermate.repository.vo.SliverUser;
 
 @Service
