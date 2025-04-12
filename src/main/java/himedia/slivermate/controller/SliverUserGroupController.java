@@ -39,7 +39,7 @@ public class SliverUserGroupController {
 		
 		return ResponseEntity.ok(selectedUserGroupUsers);
 	}
-	
+
 //	GET : /api/usergroup/login/{user_group_id}/{user_id}
 	@GetMapping("/login/{user_group_id}/{user_id}")
 	public ResponseEntity<SliverUser> loginByUserIdFromUserGroup(@PathVariable Long user_group_id, @PathVariable Long user_id, HttpSession session) {
@@ -64,6 +64,45 @@ public class SliverUserGroupController {
 		}
 	}
 
+	
+//	GET : /api/usergroup/login/{user_group_id}/{user_id}
+	@PostMapping("/login/{user_group_id}/{user_id}")
+	public ResponseEntity<SliverUser> loginByUserIdWithPinPassword(@RequestBody String pin_password, @PathVariable Long user_group_id, @PathVariable Long user_id, HttpSession session) {
+
+		//@note - 세션 정보가 있다면
+		if(session != null && session.getAttribute("loginUser") != null) {
+			SliverUser loginUser = (SliverUser)session.getAttribute("loginUser");
+			
+			if(pin_password != loginUser.getPin_password()) {
+				return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+			}
+			// @note - 비밀번호 정보 지움
+			loginUser.setUser_password("");
+			loginUser.setPin_password("");
+			
+			return ResponseEntity.ok(loginUser);
+		}
+		
+		SliverUser loginUser = sliverUserGroupService.loginByUserIdFromUserGroup(user_group_id, user_id);
+		
+		//@note - 로그인 성공
+		if (loginUser != null) {
+			if(pin_password != loginUser.getPin_password()) {
+				return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+			}
+			
+			// @note - 비밀번호 정보 지움
+			loginUser.setUser_password("");
+			loginUser.setPin_password("");
+			
+			//@note -  로그인 시 세션정보 생성
+			session.setAttribute("loginUser", loginUser);
+			return ResponseEntity.ok(loginUser);
+		} else {
+			return ResponseEntity.ofNullable(null);
+		}
+	}
+	
 //	POST : /api/usergroup
 	@PostMapping
 	public ResponseEntity<SliverUserGroup> insertUserGroup(@RequestBody SliverUserGroup userGroup) {
