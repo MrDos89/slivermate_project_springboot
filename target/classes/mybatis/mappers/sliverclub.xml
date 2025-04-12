@@ -7,7 +7,7 @@
 	SELECT club.*, user.nickname AS user_name, user.thumbnail AS user_thumbnail 
 	FROM sliver_club AS club 
 	JOIN sliver_user AS user 
-	WHERE club.user_id=user.uid ORDER BY club_id DESC
+	WHERE club.club_user_id=user.uid ORDER BY club_id DESC
 	</select>
 	
 	<select id="selectClubsByCategoryId"
@@ -15,7 +15,7 @@
 	SELECT club.*, user.nickname AS user_name, user.thumbnail AS user_thumbnail 
 	FROM sliver_club AS club 
 	JOIN sliver_user AS user 
-	WHERE club_category=#{category_id} AND club.user_id=user.uid
+	WHERE club_category=#{category_id} AND club.club_user_id=user.uid
 	</select>
 
 	<select id="selectClubsBySubCategoryId"
@@ -24,14 +24,14 @@
 	FROM sliver_club AS club 
 	JOIN sliver_user AS user 
 	WHERE club_category=#{category_id} 
-	AND club_sub_category=#{sub_category_id} AND club.user_id=user.uid
+	AND club_sub_category=#{sub_category_id} AND club.club_user_id=user.uid
 	</select>
 	
 	<select id="selectRelatedClubs"
 		resultType="sliverClub">
 	SELECT club.*, user.nickname AS user_name, user.thumbnail AS user_thumbnail
 	FROM sliver_club AS club
-	LEFT JOIN sliver_user AS user ON club.user_id = user.uid
+	LEFT JOIN sliver_user AS user ON club.club_user_id = user.uid
 	WHERE club.club_category = #{club_category}
   	AND club.club_sub_category = #{club_sub_category}
   	ORDER BY club.club_register_date DESC LIMIT 5
@@ -43,7 +43,7 @@
 	SELECT club.*, user.nickname AS user_name, user.thumbnail AS user_thumbnail 
 	FROM sliver_club AS club 
 	JOIN sliver_user AS user 
-	WHERE club_id=#{id} AND club.user_id=user.uid
+	WHERE club_id=#{id} AND club.club_user_id=user.uid
 	</select>
 	
 	<select id="selectJoinedClubsByUserId"
@@ -55,13 +55,13 @@
 	</select>
 	
 	<insert id="insertClub" parameterType="sliverClub">
-	INSERT INTO sliver_club (user_id, 
+	INSERT INTO sliver_club (club_user_id, 
 								club_name, club_desc, club_cost_desc, 
 								club_category, club_sub_category, 
 								club_free_lecture, club_cost_lecture, 
 								club_thumbnail, club_price, 
 								club_register_date, is_hidden)
-	VALUES (#{user_id}, #{club_name}, #{club_desc}, #{club_category}, 
+	VALUES (#{club_user_id}, #{club_name}, #{club_desc}, #{club_category}, 
 			#{club_sub_category}, #{club_free_lecture}, 
 			#{club_cost_lecture}, #{club_thumbnail}, 
 			#{lessosn_price}, #{club_register_date}, #{is_hidden})
@@ -69,7 +69,7 @@
 	
 	<update id="updateClub" parameterType="sliverClub">
 	UPDATE sliver_club SET
-	user_id=#{user_id}, club_name=#{club_name}, 
+	club_user_id=#{club_user_id}, club_name=#{club_name}, 
 	club_desc=#{club_desc}, club_cost_desc =#{club_cost_desc},
 	club_category=#{club_category}, 
 	club_sub_category=#{club_sub_category}, 
@@ -94,7 +94,7 @@
 	WHERE club_id=#{club_id}
 	</update>
 	
-	<delete id="deletePost" parameterType="Long">
+	<delete id="deleteClub" parameterType="Long">
 	DELETE FROM sliver_club WHERE club_id=#{club_id}
 	</delete>
 </mapper>
