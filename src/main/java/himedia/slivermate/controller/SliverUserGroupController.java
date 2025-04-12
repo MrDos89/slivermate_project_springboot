@@ -76,8 +76,7 @@ public class SliverUserGroupController {
 			if(pin_password != loginUser.getPin_password()) {
 				return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
 			}
-			// @note - 비밀번호 정보 지움
-			loginUser.setUser_password("");
+			// @note - 핀 비밀번호 정보 지움
 			loginUser.setPin_password("");
 			
 			return ResponseEntity.ok(loginUser);
@@ -93,7 +92,6 @@ public class SliverUserGroupController {
 			
 			// @note - 비밀번호 정보 지움
 			loginUser.setUser_password("");
-			loginUser.setPin_password("");
 			
 			//@note -  로그인 시 세션정보 생성
 			session.setAttribute("loginUser", loginUser);
