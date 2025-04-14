@@ -18,19 +18,20 @@ import himedia.slivermate.service.SliverAnnouncementService;
 public class SliverAnnouncementController {
 	@Autowired
 	private SliverAnnouncementService sliverAnnouncementService;
-	
+
 //	GET : /api/announcement
 	@GetMapping
 	public ResponseEntity<List<SliverAnnouncement>> selectAllCategories() {
 		List<SliverAnnouncement> announcements = sliverAnnouncementService.selectAllAnnouncements();
 		return ResponseEntity.ok(announcements);
 	}
-	
+
 // POST : /api/announcement
-    @PostMapping
-    public ResponseEntity<SliverAnnouncement> insertAnnouncement(@RequestBody SliverAnnouncement announcement) {
-        // Service 레이어를 통해 DB에 INSERT 작업 후, 저장된 데이터를 반환합니다.
-        SliverAnnouncement savedAnnouncement = sliverAnnouncementService.insertAnnouncement(announcement);
-        return ResponseEntity.ok(savedAnnouncement);
-    }
+	@PostMapping
+	public ResponseEntity<SliverAnnouncement> insertAnnouncement(@RequestBody SliverAnnouncement announcement) {
+		// Service 레이어를 통해 DB에 INSERT 작업 후, 저장된 데이터를 반환합니다.
+		SliverAnnouncement savedAnnouncement = sliverAnnouncementService.insertAnnouncement(announcement);
+		return ResponseEntity.ok(savedAnnouncement);
+	}
+
 }
