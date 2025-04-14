@@ -9,4 +9,6 @@ import himedia.slivermate.repository.vo.SliverAnnouncement;
 @Mapper
 public interface SliverAnnouncementMapper {
 	List<SliverAnnouncement> selectAllAnnouncements();
+	
+	int insertAnnouncement(SliverAnnouncement announcement);
 }
