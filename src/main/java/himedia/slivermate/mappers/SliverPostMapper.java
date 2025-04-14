@@ -22,5 +22,9 @@ public interface SliverPostMapper {
 	List<SliverPost> selectAllPostsWithUserLike(@Param("user_id") int user_id);
 	
 	Boolean checkIfUserLikedPost(@Param("post_id") Long post_id, @Param("user_id") int user_id);
+	
+	void incrementLikeCount(@Param("post_id") int post_id);
+	void decrementLikeCount(@Param("post_id") int post_id);
+
 
 }

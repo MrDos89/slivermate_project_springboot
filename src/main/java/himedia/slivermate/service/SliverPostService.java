@@ -28,7 +28,7 @@ public class SliverPostService {
 	}
 	
 	public SliverPost insertNewPost(SliverPost post) {
-	    // 🔥 서버에서 현재 시간 직접 세팅
+	    // 서버에서 현재 시간 직접 세팅
 	    post.setRegister_date(new Date());
 
 	    sliverPostMapper.insertNewPost(post);
@@ -47,12 +47,12 @@ public class SliverPostService {
 
 	
 	public SliverPost updatePostLikeCount(Long post_id, int user_id, boolean isLiked) {
-	    // 💡 user_id 기준으로 좋아요 누른 상태를 정확히 조회하도록 수정해야 함
+	    // user_id 기준으로 좋아요 누른 상태를 정확히 조회하도록 수정해야 함
 	    Boolean currentLikedByMe = sliverPostMapper.checkIfUserLikedPost(post_id, user_id);
 
 	    if (currentLikedByMe == null) currentLikedByMe = false;
 
-	    // 👉 현재 상태와 바뀌는 상태가 다를 때만 count 조정
+	    // 현재 상태와 바뀌는 상태가 다를 때만 count 조정
 	    if (currentLikedByMe != isLiked) {
 	        SliverPost post = sliverPostMapper.selectPostById(post_id);
 

@@ -23,29 +23,35 @@ public class SliverLikeService {
 	    int exists = sliverLikeMapper.exists(vo);
 
 	    if (exists == 0) {
+	        // 처음 누른 경우
 	        boolean inserted = sliverLikeMapper.insertLike(vo) > 0;
 	        if (inserted) {
-	            sliverPostService.updatePostLikeCount((long) vo.getPost_id(), vo.getUser_id(), true);
+	            sliverPostMapper.incrementLikeCount(vo.getPost_id());
 	        }
 	        return inserted;
+
 	    } else {
 	        boolean isLiked = sliverLikeMapper.isLiked(vo) > 0;
 
 	        if (isLiked) {
+	            // 좋아요 취소
 	            boolean deleted = sliverLikeMapper.deleteLike(vo) > 0;
 	            if (deleted) {
-	                sliverPostService.updatePostLikeCount((long) vo.getPost_id(), vo.getUser_id(), false);
+	                sliverPostMapper.decrementLikeCount(vo.getPost_id());
 	            }
 	            return deleted;
+
 	        } else {
+	            // 다시 좋아요
 	            boolean updated = sliverLikeMapper.updateLike(vo) > 0;
 	            if (updated) {
-	                sliverPostService.updatePostLikeCount((long) vo.getPost_id(), vo.getUser_id(), true);
+	                sliverPostMapper.incrementLikeCount(vo.getPost_id());
 	            }
 	            return updated;
 	        }
 	    }
 	}
+
 
 
 	
