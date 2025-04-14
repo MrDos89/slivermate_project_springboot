@@ -65,6 +65,7 @@ public class SliverUserController {
 	        .path("/")
 	        .maxAge(0)
 	        .httpOnly(true)
+	        .domain("43.201.50.194") // 👈 명시적으로 추가
 	        .sameSite("Lax")
 	        .secure(false) // HTTPS면 true
 	        .build();
