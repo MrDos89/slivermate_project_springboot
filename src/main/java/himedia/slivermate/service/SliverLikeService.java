@@ -26,7 +26,7 @@ public class SliverLikeService {
 	        // 처음 누른 경우
 	        boolean inserted = sliverLikeMapper.insertLike(vo) > 0;
 	        if (inserted) {
-	            sliverPostMapper.incrementLikeCount(vo.getPost_id());
+	        	sliverPostMapper.incrementLikeCount((long) vo.getPost_id());
 	        }
 	        return inserted;
 
@@ -37,7 +37,7 @@ public class SliverLikeService {
 	            // 좋아요 취소
 	            boolean deleted = sliverLikeMapper.deleteLike(vo) > 0;
 	            if (deleted) {
-	                sliverPostMapper.decrementLikeCount(vo.getPost_id());
+	                sliverPostMapper.decrementLikeCount((long)vo.getPost_id());
 	            }
 	            return deleted;
 
@@ -45,7 +45,7 @@ public class SliverLikeService {
 	            // 다시 좋아요
 	            boolean updated = sliverLikeMapper.updateLike(vo) > 0;
 	            if (updated) {
-	                sliverPostMapper.incrementLikeCount(vo.getPost_id());
+	                sliverPostMapper.incrementLikeCount((long)vo.getPost_id());
 	            }
 	            return updated;
 	        }
