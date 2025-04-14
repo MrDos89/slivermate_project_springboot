@@ -138,6 +138,12 @@
       <version>3.0.4</version>
       <scope>test</scope>
     </dependency>
+    
+    <!-- SLF4J + Logback 의존성 (Spring Boot는 기본적으로 포함됨) -->
+	<dependency>
+	    <groupId>org.springframework.boot</groupId>
+	    <artifactId>spring-boot-starter-logging</artifactId>
+	</dependency>
 
   </dependencies>
 
