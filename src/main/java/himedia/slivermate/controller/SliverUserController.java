@@ -3,7 +3,9 @@ package himedia.slivermate.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import himedia.slivermate.repository.dto.SliverLoginData;
 import himedia.slivermate.repository.vo.SliverUser;
 import himedia.slivermate.service.SliverUserService;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 @RestController
@@ -50,9 +53,18 @@ public class SliverUserController {
 	
 	//@note - 세선 정보 소멸
 	@GetMapping("/logout")
-	public void logout(HttpSession session) {
+	public void logout(HttpSession session, HttpServletResponse response) {
 		session.removeAttribute("loginUser");
 		session.invalidate();
+		
+	    // JSESSIONID 쿠키 제거
+	    ResponseCookie cookie = ResponseCookie.from("JSESSIONID", "")
+	        .path("/")
+	        .maxAge(0)
+	        .httpOnly(true)
+	        .build();
+
+	    response.setHeader(HttpHeaders.SET_COOKIE, cookie.toString());
 	}
 	
 //	POST : /api/user -> 새로운 유저 항목 생성
