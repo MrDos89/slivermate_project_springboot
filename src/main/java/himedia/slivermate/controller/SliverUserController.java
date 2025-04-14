@@ -55,28 +55,24 @@ public class SliverUserController {
 	
 	//@note - 세선 정보 소멸
 	@GetMapping("/logout")
-	public void logout(HttpServletRequest request, HttpServletResponse response) {
-		// 세션 무효화 로그 추가
-		HttpSession session = request.getSession(false);
-		if (session != null) {
-		    session.invalidate();
-		    log.info("Session invalidated");
-		} else {
-			log.info("No session found to invalidate");
-		}
+	public ResponseEntity<Void> logout(HttpServletRequest request, HttpServletResponse response) {
+	    HttpSession session = request.getSession(false);
+	    if (session != null) {
+	        session.invalidate();
+	    }
 
-		// 쿠키 삭제 로그 추가
-		ResponseCookie deleteCookie = ResponseCookie.from("JSESSIONID", "")
-		    .path("/")
-		    .maxAge(0)
-		    .httpOnly(true)
-		    .domain("43.201.50.194")  // 여기에 도메인이 정확한지 확인
-		    .sameSite("Lax")
-		    .secure(false)
-		    .build();
+	    ResponseCookie deleteCookie = ResponseCookie.from("JSESSIONID", "")
+	        .path("/")
+	        .maxAge(0)
+	        .httpOnly(true)
+	        .sameSite("Lax") // 또는 None
+	        .secure(false)
+	        .build();
 
-		response.setHeader(HttpHeaders.SET_COOKIE, deleteCookie.toString());
-		log.info("JSESSIONID cookie deletion: " + deleteCookie.toString());
+	    return ResponseEntity
+	        .ok()
+	        .header(HttpHeaders.SET_COOKIE, deleteCookie.toString())
+	        .build();
 	}
 	
 //	POST : /api/user -> 새로운 유저 항목 생성
