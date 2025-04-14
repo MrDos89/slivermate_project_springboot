@@ -48,14 +48,14 @@ public class SliverLikeController {
 	}
 
 	// 사용자가 해당 리뷰에 좋아요 눌렀는지 확인
-		@GetMapping("/is-liked")
-		public ResponseEntity<Boolean> isLiked(@RequestParam("user_id") int user_id,
-				@RequestParam("post_id") int post_id) {
-			SliverLike vo = new SliverLike();
-			vo.setUser_id(user_id);
-			vo.setPost_id(post_id);
-			Boolean isLiked = sliverLikeService.isLiked(vo);
-			return ResponseEntity.ok(isLiked != null && isLiked);
-		}
+	@GetMapping("/is-liked")
+	public ResponseEntity<Boolean> isLiked(@RequestParam("user_id") int user_id,
+			@RequestParam("post_id") int post_id) {
+		SliverLike vo = new SliverLike();
+		vo.setUser_id(user_id);
+		vo.setPost_id(post_id);
+		Boolean isLiked = sliverLikeService.isLiked(vo);
+		return ResponseEntity.ok(isLiked != null && isLiked);
+	}
 		
 }

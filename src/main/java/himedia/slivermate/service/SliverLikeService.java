@@ -25,7 +25,7 @@ public class SliverLikeService {
 	    if (exists == 0) {
 	        boolean inserted = sliverLikeMapper.insertLike(vo) > 0;
 	        if (inserted) {
-	            sliverPostService.updatePostLikeCount((long) vo.getPost_id(), true);
+	            sliverPostService.updatePostLikeCount((long) vo.getPost_id(), vo.getUser_id(), true);
 	        }
 	        return inserted;
 	    } else {
@@ -34,18 +34,19 @@ public class SliverLikeService {
 	        if (isLiked) {
 	            boolean deleted = sliverLikeMapper.deleteLike(vo) > 0;
 	            if (deleted) {
-	                sliverPostService.updatePostLikeCount((long) vo.getPost_id(), false);
+	                sliverPostService.updatePostLikeCount((long) vo.getPost_id(), vo.getUser_id(), false);
 	            }
 	            return deleted;
 	        } else {
 	            boolean updated = sliverLikeMapper.updateLike(vo) > 0;
 	            if (updated) {
-	                sliverPostService.updatePostLikeCount((long) vo.getPost_id(), true);
+	                sliverPostService.updatePostLikeCount((long) vo.getPost_id(), vo.getUser_id(), true);
 	            }
 	            return updated;
 	        }
 	    }
 	}
+
 
 	
 

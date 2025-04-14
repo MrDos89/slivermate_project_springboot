@@ -18,7 +18,7 @@
 	  ORDER BY comment_id DESC
 	</select>
 	
-	<insert id="insertComment" parameterType="sliverComment">
+	<insert id="insertComment" parameterType="himedia.slivermate.repository.vo.SliverComment">
     INSERT INTO sliver_comment (post_id, user_id, comment_text, upd_date)
     VALUES (#{post_id}, #{user_id}, #{comment_text}, NOW())
 	</insert>

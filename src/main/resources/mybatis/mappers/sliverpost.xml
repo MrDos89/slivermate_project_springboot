@@ -74,4 +74,10 @@
 	    WHERE post_id = #{post_id}
 	</update>
 	
+	<select id="checkIfUserLikedPost" resultType="boolean">
+	  SELECT is_liked
+	  FROM sliver_post_like
+	  WHERE post_id = #{post_id} AND user_id = #{user_id}
+	</select>
+
 </mapper>

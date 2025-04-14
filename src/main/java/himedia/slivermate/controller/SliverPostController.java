@@ -44,14 +44,14 @@ public class SliverPostController {
 		return ResponseEntity.ok(newPost);
 	}
 	
-	@PatchMapping("/updateCount")
-	public ResponseEntity<SliverPost> updatePostLikeCount(
-	    @RequestParam Long post_id,
-	    @RequestParam boolean liked_by_me) {
-	    
-	    SliverPost updatedPost = sliverPostService.updatePostLikeCount(post_id, liked_by_me);
-	    return ResponseEntity.ok(updatedPost);
-	}
+//	@PatchMapping("/updateCount")
+//	public ResponseEntity<SliverPost> updatePostLikeCount(
+//	    @RequestParam Long post_id,
+//	    @RequestParam boolean liked_by_me) {
+//	    
+//	    SliverPost updatedPost = sliverPostService.updatePostLikeCount(post_id, liked_by_me);
+//	    return ResponseEntity.ok(updatedPost);
+//	}
 
 	 
 	    @GetMapping("/with-like")
@@ -60,4 +60,15 @@ public class SliverPostController {
 	        List<SliverPost> posts = sliverPostService.selectAllPostsWithUserLike(user_id);
 	        return ResponseEntity.ok(posts);  // 결과를 JSON 형식으로 반환
 	    }
+	    
+	    @PatchMapping("/updateCount")
+	    public ResponseEntity<SliverPost> updatePostLikeCount(
+	        @RequestParam Long post_id,
+	        @RequestParam int user_id,
+	        @RequestParam boolean liked_by_me
+	    ) {
+	        SliverPost updatedPost = sliverPostService.updatePostLikeCount(post_id, user_id, liked_by_me);
+	        return ResponseEntity.ok(updatedPost);
+	    }
+
 }

@@ -38,21 +38,28 @@ public class SliverPostService {
 		return insertedPost;
 	}
 	
-	public SliverPost updatePostLikeCount(Long post_id, boolean isLiked) {
-	    SliverPost post = sliverPostMapper.selectPostById(post_id);
+	public SliverPost updatePostLikeCount(Long post_id, int user_id, boolean isLiked) {
+	    // 💡 user_id 기준으로 좋아요 누른 상태를 정확히 조회하도록 수정해야 함
+	    Boolean currentLikedByMe = sliverPostMapper.checkIfUserLikedPost(post_id, user_id);
 
-	    if (post != null) {
-	        if (post.isLiked_by_me() != isLiked) {
+	    if (currentLikedByMe == null) currentLikedByMe = false;
+
+	    // 👉 현재 상태와 바뀌는 상태가 다를 때만 count 조정
+	    if (currentLikedByMe != isLiked) {
+	        SliverPost post = sliverPostMapper.selectPostById(post_id);
+
+	        if (post != null) {
 	            int count = post.getPost_like_count();
 	            post.setPost_like_count(isLiked ? count + 1 : count - 1);
 	            sliverPostMapper.updatePostLikeCount(post_id, post.getPost_like_count());
+	            post.setLiked_by_me(isLiked); // optional
+	            return post;
 	        }
-
-	        post.setLiked_by_me(isLiked);
 	    }
 
-	    return post;
+	    return null; // 또는 throw exception 등
 	}
+
 
 
 
