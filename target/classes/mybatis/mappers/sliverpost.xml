@@ -68,4 +68,10 @@
 	#{is_hidden}, #{post_report_count}, #{register_date})
 	</insert>
 	
+	<update id="updatePostLikeCount">
+	    UPDATE sliver_post
+	    SET post_like_count = #{post_like_count}
+	    WHERE post_id = #{post_id}
+	</update>
+	
 </mapper>
