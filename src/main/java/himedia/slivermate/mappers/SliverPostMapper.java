@@ -25,4 +25,6 @@ public interface SliverPostMapper {
 	
 	void incrementLikeCount(@Param("post_id") Long post_id);
 	void decrementLikeCount(@Param("post_id") Long post_id);
+	
+	void incrementCommentCount(@Param("post_id") Long postId);
 }

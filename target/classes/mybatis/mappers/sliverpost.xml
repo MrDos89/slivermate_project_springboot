@@ -141,5 +141,11 @@
 	    WHERE post_id = #{post_id}
 	</update>
 
+	<update id="incrementCommentCount">
+	  UPDATE sliver_post
+	  SET post_comment_count = post_comment_count + 1
+	  WHERE post_id = #{post_id}
+	</update>
+
 
 </mapper>
