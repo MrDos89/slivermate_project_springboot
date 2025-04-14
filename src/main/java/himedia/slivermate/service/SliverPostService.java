@@ -1,5 +1,6 @@
 package himedia.slivermate.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,16 +28,23 @@ public class SliverPostService {
 	}
 	
 	public SliverPost insertNewPost(SliverPost post) {
-		sliverPostMapper.insertNewPost(post);
+	    // 🔥 서버에서 현재 시간 직접 세팅
+	    post.setRegister_date(new Date());
 
-		Long id = post.getPost_id();
-		SliverPost insertedPost = sliverPostMapper.selectPostById(id);
+	    sliverPostMapper.insertNewPost(post);
 
-		// 새로 작성된 글은 당연히 좋아요를 누른 상태가 아니므로 false로 설정
-		insertedPost.setLiked_by_me(false);
+	    Long id = post.getPost_id();
+	    SliverPost insertedPost = sliverPostMapper.selectPostById(id);
 
-		return insertedPost;
+	    if (insertedPost == null) {
+	        throw new IllegalStateException("게시글 insert 이후 데이터를 불러오지 못했습니다.");
+	    }
+
+	    insertedPost.setLiked_by_me(false);
+
+	    return insertedPost;
 	}
+
 	
 	public SliverPost updatePostLikeCount(Long post_id, int user_id, boolean isLiked) {
 	    // 💡 user_id 기준으로 좋아요 누른 상태를 정확히 조회하도록 수정해야 함
