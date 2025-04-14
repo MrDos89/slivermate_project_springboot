@@ -38,5 +38,13 @@ public class SliverPost {
 	
 	// 가상 컬럼
 	private boolean liked_by_me;
+	
+	public boolean isLiked_by_me() {
+	    return liked_by_me;
+	}
+
+	public void setLiked_by_me(boolean liked_by_me) {
+	    this.liked_by_me = liked_by_me;
+	}
 }
 
