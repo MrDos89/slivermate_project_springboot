@@ -71,14 +71,14 @@
 	    user.nickname AS nickname,
 	    user.thumbnail AS user_thumbnail,
 	
-	    -- 댓글 없을 때 빈 배열로 처리
+	    -- 댓글 없을 때 빈 배열로 처리 (필드명 주의!)
 	    (
 	      SELECT IFNULL(JSON_ARRAYAGG(
 	        JSON_OBJECT(
 	          'user_thumbnail', u.thumbnail,
-	          'nickname', u.nickname,
+	          'user_nickname', u.nickname,
 	          'comment_text', c.comment_text,
-	          'register_date', c.upd_date
+	          'upd_date', c.upd_date 
 	        )
 	      ), JSON_ARRAY())
 	      FROM sliver_comment c
@@ -97,6 +97,7 @@
 	  JOIN sliver_user AS user ON post.post_user_id = user.uid
 	  ORDER BY post.post_id DESC
 	</select>
+
 
 
 	
