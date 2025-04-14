@@ -27,11 +27,11 @@ public class SliverCommentController {
 		return ResponseEntity.ok(comments);
 	}
 	
-    @PostMapping("/newcomment")
-    public ResponseEntity<String> insertComment(@RequestBody SliverComment comment) {
-        sliverCommentService.insertComment(comment);
-        return ResponseEntity.ok("success");
-    }
+	@PostMapping("/newcomment")
+	public ResponseEntity<String> insertComment(@RequestBody SliverComment comment) {
+	    int result = sliverCommentService.insertComment(comment);
+	    return result > 0 ? ResponseEntity.ok("success") : ResponseEntity.status(500).body("fail");
+	}
     
     @GetMapping("/by-post")
     public ResponseEntity<List<SliverComment>> getCommentsByPost(@RequestParam Long post_id) {

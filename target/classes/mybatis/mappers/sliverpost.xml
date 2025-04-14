@@ -32,7 +32,7 @@
 	    <result column="user_thumbnail" property="user_thumbnail" />
 	    
 	    <!-- 좋아요 정보 -->
-	    <result column="liked_by_me" property="likedByMe"/>
+	    <result column="liked_by_me" property="liked_by_me"/>
 
 	</resultMap>
 
@@ -139,6 +139,12 @@
 	        ELSE 0
 	    END
 	    WHERE post_id = #{post_id}
+	</update>
+
+	<update id="incrementCommentCount">
+	  UPDATE sliver_post
+	  SET post_comment_count = post_comment_count + 1
+	  WHERE post_id = #{post_id}
 	</update>
 
 

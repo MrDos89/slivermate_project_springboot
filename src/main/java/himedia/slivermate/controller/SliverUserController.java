@@ -1,6 +1,6 @@
 package himedia.slivermate.controller;
-
 import java.util.List;
+import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -23,6 +23,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/user")
 public class SliverUserController {
@@ -54,23 +55,24 @@ public class SliverUserController {
 	
 	//@note - 세선 정보 소멸
 	@GetMapping("/logout")
-	public void logout(HttpServletRequest request, HttpServletResponse response) {
+	public ResponseEntity<Void> logout(HttpServletRequest request, HttpServletResponse response) {
 	    HttpSession session = request.getSession(false);
 	    if (session != null) {
 	        session.invalidate();
 	    }
 
-	    // JSESSIONID 쿠키 삭제 (브라우저에게 명령)
 	    ResponseCookie deleteCookie = ResponseCookie.from("JSESSIONID", "")
 	        .path("/")
 	        .maxAge(0)
 	        .httpOnly(true)
-	        .domain("43.201.50.194") // 👈 명시적으로 추가
-	        .sameSite("Lax")
-	        .secure(false) // HTTPS면 true
+	        .sameSite("Lax") // 또는 None
+	        .secure(false)
 	        .build();
 
-	    response.setHeader(HttpHeaders.SET_COOKIE, deleteCookie.toString());
+	    return ResponseEntity
+	        .ok()
+	        .header(HttpHeaders.SET_COOKIE, deleteCookie.toString())
+	        .build();
 	}
 	
 //	POST : /api/user -> 새로운 유저 항목 생성
