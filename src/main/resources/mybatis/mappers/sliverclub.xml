@@ -55,16 +55,17 @@
 	</select>
 	
 	<insert id="insertClub" parameterType="sliverClub">
-	INSERT INTO sliver_club (club_user_id, 
-								club_name, club_desc, club_cost_desc, 
-								club_category, club_sub_category, 
-								club_free_lecture, club_cost_lecture, 
-								club_thumbnail, club_price, 
-								club_register_date, is_hidden)
-	VALUES (#{club_user_id}, #{club_name}, #{club_desc}, #{club_category}, 
-			#{club_sub_category}, #{club_free_lecture}, 
-			#{club_cost_lecture}, #{club_thumbnail}, 
-			#{lessosn_price}, #{club_register_date}, #{is_hidden})
+	  INSERT INTO sliver_club (
+	    club_user_id, club_name, club_desc,
+	    club_category_id, club_sub_category_id, club_thumbnail,
+	    club_movie, club_member_max, club_report_cnt,
+	    club_register_date, is_deleted, upd_date) 
+	  VALUES (
+	    #{club_user_id}, #{club_name}, #{club_desc},
+	    #{club_category_id}, #{club_sub_category_id}, #{club_thumbnail},
+	    #{club_movie}, #{club_member_max}, #{club_report_cnt},
+	    #{club_register_date}, #{is_deleted}, #{upd_date}
+	  )
 	</insert>
 	
 	<update id="updateClub" parameterType="sliverClub">
