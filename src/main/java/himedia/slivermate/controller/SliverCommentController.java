@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import himedia.slivermate.repository.vo.SliverComment;
@@ -30,5 +31,11 @@ public class SliverCommentController {
     public ResponseEntity<String> insertComment(@RequestBody SliverComment comment) {
         sliverCommentService.insertComment(comment);
         return ResponseEntity.ok("success");
+    }
+    
+    @GetMapping("/by-post")
+    public ResponseEntity<List<SliverComment>> getCommentsByPost(@RequestParam Long post_id) {
+        List<SliverComment> comments = sliverCommentService.selectCommentsByPostId(post_id);
+        return ResponseEntity.ok(comments);
     }
 }

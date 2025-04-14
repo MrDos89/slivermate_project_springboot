@@ -14,4 +14,6 @@ public interface SliverCommentMapper {
 //	<select id="insertComment" resultType="SliverComment">
 	int insertComment(SliverComment comment);
 
+//	<select id="selectCommentsByPostId" resultType="SliverComment">
+	List<SliverComment> selectCommentsByPostId(Long post_id);
 }

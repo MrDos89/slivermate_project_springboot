@@ -22,4 +22,8 @@ public class SliverCommentService {
 	 public void insertComment(SliverComment comment) {
 	        sliverCommentMapper.insertComment(comment);
 	    }
+	 
+	 public List<SliverComment> selectCommentsByPostId(Long post_id) {
+		    return sliverCommentMapper.selectCommentsByPostId(post_id);
+		}
 }
