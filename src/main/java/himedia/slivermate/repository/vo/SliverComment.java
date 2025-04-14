@@ -16,6 +16,8 @@ import lombok.ToString;
 public class SliverComment {
 	private Long comment_id;
 	private Long post_id;
+	private Long user_id;
+	private Long club_id;
 	private String comment_text;
 	private Date upd_date;
 	
