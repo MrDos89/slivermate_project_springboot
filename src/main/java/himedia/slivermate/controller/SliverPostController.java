@@ -31,8 +31,8 @@ public class SliverPostController {
 	}
 
 	@GetMapping("/{post_id}")
-	public ResponseEntity<SliverPost> selectPostById(@PathVariable Long id) {
-		SliverPost post = sliverPostService.selectPostById(id);
+	public ResponseEntity<SliverPost> selectPostById(@PathVariable Long post_id) {
+		SliverPost post = sliverPostService.selectPostById(post_id);
 		
 		return ResponseEntity.ok(post);
 	}
