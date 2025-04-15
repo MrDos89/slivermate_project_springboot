@@ -27,6 +27,12 @@ public class SliverPostService {
 		return post;
 	}
 	
+	public SliverPost selectPostByUid(Long uid) {
+		List<SliverPost> posts = sliverPostMapper.selectPostByUid(uid);
+		
+		return posts;
+	}
+	
 	public SliverPost insertNewPost(SliverPost post) {
 	    // 서버에서 현재 시간 직접 세팅
 	    post.setRegister_date(new Date());

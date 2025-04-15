@@ -65,6 +65,13 @@
 	WHERE post.post_user_id=user.uid AND post.post_id=#{post_id}
 	</select>
 	
+	<select id="selectPostByUid" resultMap="himedia.slivermate.mappers.SliverPostMapper.PostResultMap">
+	SELECT post.*, user.nickname AS nickname, user.thumbnail AS user_thumbnail 
+	FROM sliver_post AS post 
+	JOIN sliver_user AS user 
+	WHERE post.post_user_id=user.uid AND post.post_user_id=#{uid}
+	</select>
+	
 	<select id="selectAllPostsWithUserLike" resultMap="himedia.slivermate.mappers.SliverPostMapper.PostResultMap">
 	  SELECT 
 	    post.*, 

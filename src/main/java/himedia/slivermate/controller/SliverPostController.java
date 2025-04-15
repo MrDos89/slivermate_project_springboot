@@ -36,6 +36,13 @@ public class SliverPostController {
 		
 		return ResponseEntity.ok(post);
 	}
+
+	@GetMapping("/u/{uid}")
+	public ResponseEntity<List<SliverPost>> selectPostByUid(@PathVariable Long uid) {
+		List<SliverPost> posts = sliverPostService.selectPostByUid(uid);
+		
+		return ResponseEntity.ok(posts);
+	}
 	
 	@PostMapping
 	public ResponseEntity<SliverPost> insertNewPost(@RequestBody SliverPost post) {

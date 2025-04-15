@@ -13,6 +13,8 @@ public interface SliverPostMapper {
 	List<SliverPost> selectAllPosts();
 //	<select id="selectPostById" resultType="SliverPost">	
 	SliverPost selectPostById(Long post_id);
+//	<select id="selectPostByUid" resultType="SliverPost">		
+	List<SliverPost> selectPostByUid(Long uid);
 //	<insert id="insertNewPost" parameterType="SliverPost">
 	int insertNewPost(SliverPost post);
 	
