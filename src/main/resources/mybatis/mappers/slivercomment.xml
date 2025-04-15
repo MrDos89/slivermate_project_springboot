@@ -10,6 +10,14 @@
 	WHERE comment.user_id=user.uid ORDER BY comment_id DESC
 	</select>
 
+	<select id="selectMyComments" resultType="sliverComment">
+	  SELECT comment.*, user.nickname AS user_nickname, user.thumbnail AS user_thumbnail
+	  FROM sliver_comment AS comment
+	  JOIN sliver_user AS user ON comment.user_id = user.uid
+	  WHERE comment.user_id = #{uid}
+	  ORDER BY comment_id DESC
+	</select>
+
 	<select id="selectCommentsByPostId" resultType="sliverComment">
 	  SELECT comment.*, user.nickname AS user_nickname, user.thumbnail AS user_thumbnail
 	  FROM sliver_comment AS comment

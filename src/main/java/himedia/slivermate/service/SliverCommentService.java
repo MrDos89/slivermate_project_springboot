@@ -20,6 +20,10 @@ public class SliverCommentService {
 	public List<SliverComment> selectAllComments() {
 		return sliverCommentMapper.selectAllComments();
 	}
+	
+	public List<SliverComment> selectMyComments(Long uid) {
+		return sliverCommentMapper.selectMyComments(uid);
+	}
 
 	public int insertComment(SliverComment comment) {
 		int inserted = sliverCommentMapper.insertComment(comment);

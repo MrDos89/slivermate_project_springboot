@@ -10,6 +10,8 @@ import himedia.slivermate.repository.vo.SliverComment;
 public interface SliverCommentMapper {
 //	<select id="selectAllComments" resultType="SliverComment">
 	public List<SliverComment> selectAllComments();
+	
+	public List<SliverComment> selectMyComments(Long uid);
 
 //	<select id="insertComment" resultType="SliverComment">
 	int insertComment(SliverComment comment);

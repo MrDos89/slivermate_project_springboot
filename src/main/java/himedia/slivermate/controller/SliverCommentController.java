@@ -21,8 +21,15 @@ public class SliverCommentController {
 	private SliverCommentService sliverCommentService;
 	
 	@GetMapping
-	public ResponseEntity<List<SliverComment>> selectAllPosts() {
+	public ResponseEntity<List<SliverComment>> selectAllComments() {
 		List<SliverComment> comments = sliverCommentService.selectAllComments();
+		
+		return ResponseEntity.ok(comments);
+	}
+	
+	@GetMapping("/u/{uid}")
+	public ResponseEntity<List<SliverComment>> selectMyComments(Long uid) {
+		List<SliverComment> comments = sliverCommentService.selectMyComments(uid);
 		
 		return ResponseEntity.ok(comments);
 	}
