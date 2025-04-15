@@ -28,4 +28,6 @@ public class SliverClub {
 	private Date club_register_date;	// 모임 개설 날짜
 	private boolean is_deleted;			// 모임 삭제 여부 (숨김 여부)
 	private Date upd_date;				// 업데이트 일시
+	
+	private String user_name;  			// 모임장 닉네임
 }
