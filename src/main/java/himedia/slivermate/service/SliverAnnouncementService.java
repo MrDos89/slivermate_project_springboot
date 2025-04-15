@@ -31,4 +31,8 @@ public class SliverAnnouncementService {
 	  public List<SliverAnnouncement> getAnnouncementsByClubId(int club_id) {
 		    return sliverAnnouncementMapper.selectAnnouncementsByClubId(club_id);
 		}
+	  
+	  public void updateAttendCount(SliverAnnouncement announcement) {
+		    sliverAnnouncementMapper.updateAttendCount(announcement);
+		}
 }

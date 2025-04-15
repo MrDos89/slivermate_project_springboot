@@ -25,5 +25,11 @@
 	  WHERE club_id = #{club_id}
 	  ORDER BY announce_date ASC
 	</select>
+	
+	<update id="updateAttendCount" parameterType="SliverAnnouncement">
+    UPDATE sliver_announcement
+    SET attend_count = #{attend_count}
+    WHERE announce_id = #{announce_id}
+	</update>
 
 </mapper>
