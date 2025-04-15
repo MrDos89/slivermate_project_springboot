@@ -35,7 +35,7 @@ public class SliverAnnouncementController {
 		return ResponseEntity.ok(savedAnnouncement);
 	}
 	
-	@GetMapping("/announcement/club/{clubId}")
+	@GetMapping("/club/{clubId}")
 	public List<SliverAnnouncement> getByClubId(@PathVariable int clubId) {
 	    return sliverAnnouncementService.getAnnouncementsByClubId(clubId);
 	}
