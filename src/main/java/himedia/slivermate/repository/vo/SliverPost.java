@@ -32,7 +32,7 @@ public class SliverPost {
 	private Date register_date;
 	private Date upd_date;
 
-	//@note - JOIN sliver_user
+	// @note - JOIN sliver_user
 	private String user_thumbnail;
 	private String nickname;
 	

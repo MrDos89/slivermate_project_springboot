@@ -20,9 +20,16 @@
 	</select>
 	
 	<insert id="insertPurchase" parameterType="sliverPurchase">
-	INSERT INTO sliver_purchase (sku, uid, lesson_id, model_type, club_id, receipt_id, price, is_monthly_paid)
-	VALUES (#{sku}, #{uid}, #{lesson_id}, #{model_type}, #{club_id}, #{receipt_id}, #{price}, #{is_monthly_paid})
+	INSERT INTO sliver_purchase (sku, uid, lesson_id, model_type, club_id, announce_id, receipt_id, price, is_monthly_paid)
+	VALUES (#{sku}, #{uid}, #{lesson_id}, #{model_type}, #{club_id}, #{announce_id}, #{receipt_id}, #{price}, #{is_monthly_paid})
 	</insert>
+	
+	<select id="selectPurchaseByClubAndAnnounce" parameterType="map" resultType="sliverPurchase">
+  	SELECT * 
+  	FROM sliver_purchase
+  	WHERE club_id = #{club_id}
+    AND announce_id = #{announce_id}
+	</select>
 	
 	<update id="updatePurchase" parameterType="sliverPurchase">
 	UPDATE sliver_purchase SET

@@ -23,5 +23,8 @@ public class SliverPurchase {
 	private String receipt_id;			// 결제 영수증
 	private Integer price;				// 결제 가격
 	private boolean is_monthly_paid;	// 구독 모델인지 여부
-	private Date upd_date;				// 업데이트 날짜 
+	private Date upd_date;				// 업데이트 날짜
+	
+	// @note - JOIN sliver_announce_id
+	private Long announce_id;	
 }
