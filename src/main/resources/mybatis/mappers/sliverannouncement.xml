@@ -26,10 +26,22 @@
 	  ORDER BY announce_date ASC
 	</select>
 	
+	<select id="selectAnnouncementById" parameterType="sliverAnnouncement">
+    SELECT *
+    FROM sliver_announcement
+    WHERE announce_id = #{announceId}
+  	</select>
+	
 	<update id="updateAttendCount" parameterType="SliverAnnouncement">
     UPDATE sliver_announcement
     SET attend_count = #{attend_count}
     WHERE announce_id = #{announce_id}
 	</update>
+	
+	<update id="updateMemberList" parameterType="SliverAnnouncement">
+    UPDATE sliver_announcement
+    SET member_list = #{member_list}
+    WHERE announce_id = #{announce_id}
+  </update>
 
 </mapper>

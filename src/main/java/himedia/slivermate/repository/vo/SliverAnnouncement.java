@@ -23,6 +23,7 @@ public class SliverAnnouncement {
 	private String announce_desc;
 	private Integer meeting_price;
 	private Integer attend_count;
+	private String member_list;
 	private Integer announce_type;
 	private Date upd_date;
 }
