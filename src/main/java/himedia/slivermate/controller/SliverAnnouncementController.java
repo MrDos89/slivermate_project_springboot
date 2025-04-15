@@ -25,7 +25,7 @@ public class SliverAnnouncementController {
     }
 
     @GetMapping("/u/{uid}")
-    public ResponseEntity<List<SliverAnnouncement>> selectMyAnnouncements(@PathVariable Long uid) {
+    public ResponseEntity<List<SliverAnnouncement>> selectMyAnnouncements(@PathVariable String uid) {
         List<SliverAnnouncement> announcements = sliverAnnouncementService.selectMyAnnouncements(uid);
         
         return ResponseEntity.ok(announcements);

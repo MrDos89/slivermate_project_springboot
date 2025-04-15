@@ -7,13 +7,10 @@
           resultType="sliverAnnouncement">
     SELECT * FROM sliver_announcement ORDER BY announce_id DESC
   </select>
-  
-  <select id="selectMyAnnouncements"
-  			resultType="sliverAnnouncement">
-  SELECT * FROM sliver_announcement
-  WHERE
-    member_list IS NOT NULL
-    AND JSON_CONTAINS(member_list, JSON_ARRAY(CAST(#{uid} AS CHAR)), '$')
+  <select id="selectByMemberUid" parameterType="java.lang.String" resultType="sliverAnnouncement">
+	SELECT * FROM sliver_announcement
+	WHERE JSON_VALID(member_list)
+	AND JSON_CONTAINS(member_list, JSON_ARRAY(#{uid}), '$')
   </select>
   
   <insert id="insertAnnouncement" 

@@ -18,7 +18,7 @@ public class SliverAnnouncementService {
 		return announcements;
 	}
 	
-	public List<SliverAnnouncement> selectMyAnnouncements(Long uid) {
+	public List<SliverAnnouncement> selectMyAnnouncements(String uid) {
 		List<SliverAnnouncement> announcements = sliverAnnouncementMapper.selectMyAnnouncements(uid);
 		
 		return announcements;

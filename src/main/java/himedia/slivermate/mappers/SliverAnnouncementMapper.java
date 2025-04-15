@@ -11,7 +11,7 @@ import himedia.slivermate.repository.vo.SliverAnnouncement;
 public interface SliverAnnouncementMapper {
 	List<SliverAnnouncement> selectAllAnnouncements();
 	
-	List<SliverAnnouncement> selectMyAnnouncements(Long uid);
+	List<SliverAnnouncement> selectMyAnnouncements(String uid);
 	
 	int insertAnnouncement(SliverAnnouncement announcement);
 	
