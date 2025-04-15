@@ -8,6 +8,12 @@
     SELECT * FROM sliver_announcement ORDER BY announce_id DESC
   </select>
   
+  <select id="selectMyAnnouncements"
+  			resultType="sliverAnnouncement">
+  SELECT * FROM sliver_announcement 
+  WHERE JSON_CONTAINS(club_member_list, JSON_ARRAY(CAST(#{uid} AS CHAR)), '$')
+  </select>
+  
   <insert id="insertAnnouncement" 
           parameterType="sliverAnnouncement"
           useGeneratedKeys="true" keyProperty="announce_id">

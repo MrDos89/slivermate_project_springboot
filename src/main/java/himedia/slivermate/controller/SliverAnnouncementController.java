@@ -24,6 +24,13 @@ public class SliverAnnouncementController {
         return ResponseEntity.ok(announcements);
     }
 
+    @GetMapping("/u/{uid}")
+    public ResponseEntity<List<SliverAnnouncement>> selectMyAnnouncements(@PathVariable uid) {
+        List<SliverAnnouncement> announcements = sliverAnnouncementService.selectMyAnnouncements(uid);
+        
+        return ResponseEntity.ok(announcements);
+    }
+    
     // POST : /api/announcement
     @PostMapping
     public ResponseEntity<SliverAnnouncement> insertAnnouncement(@RequestBody SliverAnnouncement announcement) {

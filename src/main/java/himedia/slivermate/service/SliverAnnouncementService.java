@@ -18,6 +18,12 @@ public class SliverAnnouncementService {
 		return announcements;
 	}
 	
+	public List<SliverAnnouncement> selectMyAnnouncements(Long uid) {
+		List<SliverAnnouncement> announcements = sliverAnnouncementMapper.selectMyAnnouncements(uid);
+		
+		return announcements;
+	}
+	
 	public SliverAnnouncement insertAnnouncement(SliverAnnouncement announcement) {
 		int result = sliverAnnouncementMapper.insertAnnouncement(announcement);
 		if (result > 0) {
