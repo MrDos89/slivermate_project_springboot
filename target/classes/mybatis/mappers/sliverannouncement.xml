@@ -11,7 +11,7 @@
   <select id="selectMyAnnouncements"
   			resultType="sliverAnnouncement">
   SELECT * FROM sliver_announcement 
-  WHERE JSON_CONTAINS(club_member_list, JSON_ARRAY(CAST(#{uid} AS CHAR)), '$')
+  WHERE JSON_CONTAINS(member_list, JSON_ARRAY(CAST(#{uid} AS CHAR)), '$')
   </select>
   
   <insert id="insertAnnouncement" 
