@@ -15,6 +15,7 @@ import lombok.ToString;
 @ToString
 public class SliverAnnouncement {
 	private Long announce_id;
+	private Long club_id;
 	private String announce_title;
 	private String announce_date;
 	private String announce_time;

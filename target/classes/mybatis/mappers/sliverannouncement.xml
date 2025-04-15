@@ -22,7 +22,7 @@
   	<select id="selectAnnouncementsByClubId" resultType="SliverAnnouncement">
 	  SELECT *
 	  FROM sliver_announcement
-	  WHERE club_id = #{clubId}
+	  WHERE club_id = #{club_id}
 	  ORDER BY announce_date ASC
 	</select>
 

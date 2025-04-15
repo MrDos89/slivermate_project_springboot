@@ -12,5 +12,5 @@ public interface SliverAnnouncementMapper {
 	
 	int insertAnnouncement(SliverAnnouncement announcement);
 	
-	List<SliverAnnouncement> selectAnnouncementsByClubId(int clubId);
+	List<SliverAnnouncement> selectAnnouncementsByClubId(int club_id);
 }

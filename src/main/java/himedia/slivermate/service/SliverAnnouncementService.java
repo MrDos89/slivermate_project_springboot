@@ -28,7 +28,7 @@ public class SliverAnnouncementService {
 		    }
 		  }
 	  
-	  public List<SliverAnnouncement> getAnnouncementsByClubId(int clubId) {
-		    return sliverAnnouncementMapper.selectAnnouncementsByClubId(clubId);
+	  public List<SliverAnnouncement> getAnnouncementsByClubId(int club_id) {
+		    return sliverAnnouncementMapper.selectAnnouncementsByClubId(club_id);
 		}
 }
