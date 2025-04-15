@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,6 +33,11 @@ public class SliverAnnouncementController {
 		// Service 레이어를 통해 DB에 INSERT 작업 후, 저장된 데이터를 반환합니다.
 		SliverAnnouncement savedAnnouncement = sliverAnnouncementService.insertAnnouncement(announcement);
 		return ResponseEntity.ok(savedAnnouncement);
+	}
+	
+	@GetMapping("/announcement/club/{clubId}")
+	public List<SliverAnnouncement> getByClubId(@PathVariable int clubId) {
+	    return sliverAnnouncementService.getAnnouncementsByClubId(clubId);
 	}
 
 }

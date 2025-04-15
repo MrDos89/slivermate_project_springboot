@@ -27,4 +27,8 @@ public class SliverAnnouncementService {
 		      throw new RuntimeException("Announcement 삽입에 실패했습니다.");
 		    }
 		  }
+	  
+	  public List<SliverAnnouncement> getAnnouncementsByClubId(int clubId) {
+		    return sliverAnnouncementMapper.selectAnnouncementsByClubId(clubId);
+		}
 }

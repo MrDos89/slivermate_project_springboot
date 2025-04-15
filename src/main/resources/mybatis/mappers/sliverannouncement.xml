@@ -2,10 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="himedia.slivermate.mappers.SliverAnnouncementMapper">
+ 
   <select id="selectAllAnnouncements" 
           resultType="sliverAnnouncement">
     SELECT * FROM sliver_announcement ORDER BY announce_id DESC
   </select>
+  
   <insert id="insertAnnouncement" 
           parameterType="sliverAnnouncement"
           useGeneratedKeys="true" keyProperty="announce_id">
@@ -16,4 +18,12 @@
       (#{announce_title}, #{announce_date}, #{announce_time}, #{announce_location},
        #{announce_desc}, #{meeting_price}, #{attend_count}, #{announce_type}, #{upd_date})
   </insert>
+  
+  	<select id="selectAnnouncementsByClubId" resultType="SliverAnnouncement">
+	  SELECT *
+	  FROM sliver_announcement
+	  WHERE club_id = #{clubId}
+	  ORDER BY announce_date ASC
+	</select>
+
 </mapper>
