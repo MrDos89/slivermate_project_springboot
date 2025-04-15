@@ -10,8 +10,10 @@
   
   <select id="selectMyAnnouncements"
   			resultType="sliverAnnouncement">
-  SELECT * FROM sliver_announcement 
-  WHERE JSON_CONTAINS(member_list, JSON_ARRAY(CAST(#{uid} AS CHAR)), '$')
+  SELECT * FROM sliver_announcement
+  WHERE
+    member_list IS NOT NULL
+    AND JSON_CONTAINS(member_list, JSON_ARRAY(CAST(#{uid} AS CHAR)), '$')
   </select>
   
   <insert id="insertAnnouncement" 
