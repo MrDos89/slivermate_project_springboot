@@ -67,6 +67,19 @@
 	
 	<select id="selectPostByUid" resultMap="himedia.slivermate.mappers.SliverPostMapper.PostResultMap">
 	SELECT post.*, user.nickname AS nickname, user.thumbnail AS user_thumbnail 
+	    (SELECT JSON_ARRAYAGG(
+        JSON_OBJECT(
+          'user_thumbnail', u.thumbnail,
+          'nickname', u.nickname,
+          'comment_text', c.comment_text,
+          'register_date', c.upd_date
+        )
+      )
+      FROM sliver_comment c
+      JOIN sliver_user u ON u.uid = c.user_id
+      WHERE c.post_id = post.post_id
+    ) AS post_comments
+    
 	FROM sliver_post AS post 
 	JOIN sliver_user AS user 
 	WHERE post.post_user_id=user.uid AND post.post_user_id=#{uid}
