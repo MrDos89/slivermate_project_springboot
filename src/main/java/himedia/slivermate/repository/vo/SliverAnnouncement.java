@@ -25,7 +25,4 @@ public class SliverAnnouncement {
 	private Integer attend_count;
 	private Integer announce_type;
 	private Date upd_date;
-	
-	// @note - JOIN sliver_club_id
-	private Long club_id;
 }
