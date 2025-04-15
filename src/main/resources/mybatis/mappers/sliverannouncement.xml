@@ -13,10 +13,10 @@
           useGeneratedKeys="true" keyProperty="announce_id">
     INSERT INTO sliver_announcement
       (announce_title, announce_date, announce_time, announce_location,
-       announce_desc, meeting_price, attend_count, announce_type, upd_date)
+       announce_desc, meeting_price, attend_count, announce_type, upd_date, club_id)
     VALUES
       (#{announce_title}, #{announce_date}, #{announce_time}, #{announce_location},
-       #{announce_desc}, #{meeting_price}, #{attend_count}, #{announce_type}, #{upd_date})
+       #{announce_desc}, #{meeting_price}, #{attend_count}, #{announce_type}, #{upd_date}, #{club_id})
   </insert>
   
   	<select id="selectAnnouncementsByClubId" resultType="SliverAnnouncement">
