@@ -27,7 +27,7 @@ public class SliverPostService {
 		return post;
 	}
 	
-	public SliverPost selectPostByUid(Long uid) {
+	public List<SliverPost> selectPostByUid(Long uid) {
 		List<SliverPost> posts = sliverPostMapper.selectPostByUid(uid);
 		
 		return posts;
